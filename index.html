@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +38,7 @@ body{
   overflow-x:hidden;
   transition:background 0.6s,color 0.4s;
 }
-@@keyframes gradientFlow{
+@keyframes gradientFlow{
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
@@ -117,7 +116,7 @@ nav a:hover::after{width:100%;}
   box-shadow:0 0 40px rgba(155,92,255,0.4),0 0 80px rgba(0,230,255,0.2);
   animation:float 6s ease-in-out infinite;
 }
-@@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 
 /* SECTIONS */
 section{padding:80px 1.5rem;max-width:1200px;margin:auto;}
@@ -151,7 +150,7 @@ footer{text-align:center;color:var(--muted);padding:60px 0;font-size:0.95rem;}
 .fadeIn.show{opacity:1;transform:translateY(0);}
 
 /* RESPONSIVE */
-@@media(max-width:900px){
+@media(max-width:900px){
   nav ul{justify-content:center;width:100%;margin-top:.5rem;}
   .hero{grid-template-columns:1fr;text-align:center;padding:80px 1rem;}
   .hero-photo{margin-top:2rem;}
@@ -184,7 +183,7 @@ footer{text-align:center;color:var(--muted);padding:60px 0;font-size:0.95rem;}
             </div>
         </div>
         <div class="hero-photo">
-            <img src="~/Content/Animation/Ravi.jpeg" alt="Ravi Kumar Mishra">
+            <img src="Content/Animation/Ravi.jpeg" alt="Ravi Kumar Mishra">
         </div>
     </section>
 
@@ -227,15 +226,21 @@ footer{text-align:center;color:var(--muted);padding:60px 0;font-size:0.95rem;}
     <footer>© 2025 Ravi Kumar Mishra • Built with ⚡ Neon Typewriter Magic</footer>
 
     <script>
-        // Theme toggle fixed
+        // Theme toggle (fixed)
         const modeBtn = document.getElementById("mode");
-        if (localStorage.getItem("theme") === "light") { document.body.classList.add("dark"); modeBtn.textContent = "🌙"; }
-        else { document.body.classList.remove("dark"); modeBtn.textContent = "☀️"; }
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark") {
+            document.body.classList.add("dark");
+            modeBtn.textContent = "☀️";
+        } else {
+            modeBtn.textContent = "🌙";
+        }
+
         modeBtn.addEventListener("click", () => {
             document.body.classList.toggle("dark");
             const isDark = document.body.classList.contains("dark");
-            modeBtn.textContent = isDark ? "🌙" : "☀️";
-            localStorage.setItem("theme", isDark ? "light" : "dark");
+            modeBtn.textContent = isDark ? "☀️" : "🌙";
+            localStorage.setItem("theme", isDark ? "dark" : "light");
         });
 
         // Fade animation
@@ -245,689 +250,26 @@ footer{text-align:center;color:var(--muted);padding:60px 0;font-size:0.95rem;}
         }), { threshold: .1 });
         fadeEls.forEach(el => io.observe(el));
 
-        // Typewriter loop
+        // Typewriter animation
         const roles = ["Full Stack .NET Developer", "Mobile App Engineer", ".NET MAUI Specialist", "Azure Cloud Architect", "Tech Innovator"];
         let index = 0, charIndex = 0, deleting = false;
         const typeEl = document.getElementById("typewriter");
+
         function type() {
             const text = roles[index];
-            if (!deleting) { typeEl.textContent = text.substring(0, ++charIndex); }
-            else { typeEl.textContent = text.substring(0, --charIndex); }
-            if (!deleting && charIndex === text.length) { setTimeout(() => deleting = true, 1000); }
-            else if (deleting && charIndex === 0) { deleting = false; index = (index + 1) % roles.length; }
+            if (!deleting) {
+                typeEl.textContent = text.substring(0, ++charIndex);
+                if (charIndex === text.length) setTimeout(() => deleting = true, 1000);
+            } else {
+                typeEl.textContent = text.substring(0, --charIndex);
+                if (charIndex === 0) {
+                    deleting = false;
+                    index = (index + 1) % roles.length;
+                }
+            }
             setTimeout(type, deleting ? 60 : 100);
         }
         type();
     </script>
 </body>
 </html>
-
-
-@*@{
-        ViewBag.Title = "Premium Developer Portfolio";
-        Layout = null;
-    }
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>Ravi Kumar Mishra • Elite Full Stack .NET Architect</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        <style>
-            :root {
-                --bg: #f8fafc;
-                --text: #1e293b;
-                --muted: #64748b;
-                --card: #ffffff;
-                --accent: #0f172a;
-                --link: #3b82f6;
-                --ring: 0 0 0 4px rgba(59,130,246,0.2);
-                --gradient: linear-gradient(135deg, #3b82f6, #6366f1);
-            }
-            .dark {
-                --bg: #0f172a;
-                --text: #f1f5f9;
-                --muted: #94a3b8;
-                --card: #1e293b;
-                --accent: #f1f5f9;
-                --link: #60a5fa;
-                --ring: 0 0 0 4px rgba(96,165,250,0.2);
-                --gradient: linear-gradient(135deg, #60a5fa, #818cf8);
-            }
-            * { box-sizing: border-box; }
-            html { scroll-behavior: smooth; }
-            body { margin: 0; font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; }
-            a { color: var(--link); text-decoration: none; transition: color 0.2s; }
-            a:hover { color: var(--accent); }
-            .wrap { max-width: 1200px; margin: auto; padding: 0 1.5rem; }
-
-            /* Nav */
-            .nav { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(226,232,240,0.5); transition: background 0.3s; }
-            .dark .nav { background: rgba(15,23,42,0.8); border-bottom: 1px solid rgba(30,41,59,0.5); }
-            .nav-inner { height: 80px; display: flex; align-items: center; gap: 2rem; }
-            .brand { font-weight: 800; font-size: 1.5rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-            .spacer { flex: 1; }
-            .link { color: var(--muted); font-weight: 600; position: relative; padding-bottom: 0.2rem; transition: color 0.2s; }
-            .link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gradient); transition: width 0.3s; }
-            .link:hover { color: var(--text); }
-            .link:hover::after { width: 100%; }
-            .toggle { border: none; background: none; font-size: 1.2rem; cursor: pointer; transition: transform 0.3s; }
-            .toggle:hover { transform: rotate(180deg); }
-
-            /* Hero */
-            .hero { display: grid; grid-template-columns: 1fr 0.8fr; gap: 3rem; align-items: center; padding: 100px 0 80px; position: relative; overflow: hidden; }
-            .hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%); z-index: -1; }
-            h1 { font-size: clamp(2.8rem, 8vw, 4.5rem); line-height: 1.1; margin: 0.5rem 0 1.2rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-            .lead { color: var(--muted); max-width: 60ch; font-size: 1.1rem; line-height: 1.6; }
-            .cta { display: flex; gap: 1rem; margin-top: 2rem; }
-            .btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 1rem 1.8rem; border-radius: 999px; font-weight: 600; background: var(--gradient); color: #fff; border: none; box-shadow: 0 4px 12px rgba(59,130,246,0.3); transition: transform 0.2s, box-shadow 0.2s; }
-            .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(59,130,246,0.4); }
-            .btn.ghost { background: transparent; border: 2px solid var(--link); color: var(--link); box-shadow: none; }
-            .btn.ghost:hover { background: var(--link); color: #fff; }
-            .photo { position: relative; display: flex; justify-content: center; }
-            .photo img { width: 320px; height: 320px; border-radius: 50%; border: 8px solid var(--card); box-shadow: 0 20px 60px rgba(0,0,0,0.15); object-fit: cover; transition: transform 0.3s; }
-            .photo:hover img { transform: scale(1.05); }
-
-            /* Sections */
-            .section { padding: 80px 0; border-top: 1px solid rgba(226,232,240,0.5); }
-            .dark .section { border-top: 1px solid rgba(30,41,59,0.5); }
-            h2 { font-size: 2.2rem; margin: 0 0 1.5rem; position: relative; display: inline-block; }
-            h2::after { content: ''; display: block; width: 60px; height: 4px; background: var(--gradient); margin-top: 0.5rem; }
-            .grid { display: grid; gap: 1.5rem; }
-            .skills { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-            .card { background: var(--card); border: 1px solid rgba(226,232,240,0.5); border-radius: 20px; padding: 1.5rem; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-            .card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-            .dark .card { border-color: rgba(30,41,59,0.5); }
-            .projects { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-            .meta { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.8rem; }
-            .badge { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.8rem; border-radius: 999px; border: 1px solid rgba(226,232,240,0.8); background: rgba(255,255,255,0.8); color: var(--accent); font-size: 0.9rem; transition: background 0.2s; }
-            .dark .badge { background: rgba(15,23,42,0.8); border-color: rgba(30,41,59,0.8); color: var(--text); }
-            .badge:hover { background: var(--gradient); color: #fff; border-color: transparent; }
-
-            /* Form */
-            form { display: grid; gap: 1.2rem; max-width: 600px; }
-            input, textarea { width: 100%; padding: 1.2rem; border-radius: 12px; border: 1px solid rgba(226,232,240,1); background: var(--card); color: var(--text); transition: border-color 0.2s, box-shadow 0.2s; }
-            .dark input, .dark textarea { border-color: rgba(30,41,59,1); }
-            input:focus, textarea:focus { outline: none; border-color: var(--link); box-shadow: var(--ring); }
-            textarea { min-height: 160px; resize: vertical; }
-
-            /* Footer */
-            footer { color: var(--muted); padding: 60px 0; text-align: center; border-top: 1px solid rgba(226,232,240,0.5); }
-            .dark footer { border-top: 1px solid rgba(30,41,59,0.5); }
-
-            @@media (max-width: 900px) {
-                .hero { grid-template-columns: 1fr; text-align: center; }
-                .photo { margin-top: 2rem; }
-            }
-        </style>
-    </head>
-    <body>
-        <header class="nav">
-            <div class="wrap nav-inner">
-                <div class="brand">RaviMishra.dev</div>
-                <div class="spacer"></div>
-                <a class="link" href="#about">About</a>
-                <a class="link" href="#skills">Skills</a>
-                <a class="link" href="#projects">Projects</a>
-                <a class="link" href="#contact">Contact</a>
-                <button id="mode" class="toggle" aria-label="Toggle theme">🌙</button>
-            </div>
-        </header>
-        <main class="wrap">
-            <section class="hero">
-                <div>
-                    <p class="lead" style="font-weight: 300; letter-spacing: 0.5px;">Elite Full Stack .NET & Mobile Architect</p>
-                    <h1>Hi, I’m <span style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Ravi Kumar Mishra</span>.</h1>
-                    <p class="lead">Crafting scalable, secure, and innovative solutions with ASP.NET Core, C#, EF Core, and .NET MAUI. Passionate about clean code, microservices, and exceptional user experiences.</p>
-                    <div class="cta">
-                        <a class="btn" href="#projects"><i class="fas fa-rocket"></i> Explore Projects</a>
-                        <a class="btn ghost" href="resume.pdf" download><i class="fas fa-download"></i> Download CV</a>
-                    </div>
-                </div>
-                <div class="photo">
-                    <img src="~/Content/Animation/Ravi.jpeg" alt="Ravi Mishra" />
-                </div>
-            </section>
-            <section id="about" class="section">
-                <h2>About Me</h2>
-                <p class="lead">With years of experience, I architect end-to-end systems from robust backends to intuitive UIs. Expertise in cloud-native apps, DevOps, and performance optimization using Azure, Docker, and CI/CD pipelines.</p>
-            </section>
-            <section id="skills" class="section">
-                <h2>Core Skills</h2>
-                <div class="grid skills">
-                    <div class="card"><i class="fas fa-code" style="color: var(--link); margin-right: 0.5rem;"></i> ASP.NET Core / C#</div>
-                    <div class="card"><i class="fas fa-database" style="color: var(--link); margin-right: 0.5rem;"></i> Entity Framework Core</div>
-                    <div class="card"><i class="fas fa-window-maximize" style="color: var(--link); margin-right: 0.5rem;"></i> Blazor / Razor Pages</div>
-                    <div class="card"><i class="fas fa-mobile-alt" style="color: var(--link); margin-right: 0.5rem;"></i> .NET MAUI / Xamarin</div>
-                    <div class="card"><i class="fab fa-js" style="color: var(--link); margin-right: 0.5rem;"></i> JavaScript / TypeScript</div>
-                    <div class="card"><i class="fas fa-cloud" style="color: var(--link); margin-right: 0.5rem;"></i> SQL Server / Azure</div>
-                </div>
-            </section>
-            <section id="projects" class="section">
-                <h2>Signature Projects</h2>
-                <div class="grid projects">
-                    <article class="card">
-                        <h3>SmartExpense Tracker</h3>
-                        <p>Advanced cross-platform expense management app with offline sync, AI insights, and real-time analytics (.NET MAUI + SQLite + ML.NET).</p>
-                        <div class="meta"><span class="badge">.NET MAUI</span><span class="badge">SQLite</span><span class="badge">ML.NET</span></div>
-                    </article>
-                    <article class="card">
-                        <h3>ShopEase Web</h3>
-                        <p>High-performance e-commerce platform with seamless payments, inventory AI, and PWA support (Razor Pages + EF Core + Stripe).</p>
-                        <div class="meta"><span class="badge">ASP.NET Core</span><span class="badge">Stripe</span><span class="badge">PWA</span></div>
-                    </article>
-                    <article class="card">
-                        <h3>InsightDash</h3>
-                        <p>Enterprise dashboard with real-time data visualization, predictive analytics, and secure RBAC (Blazor + SignalR + Power BI integration).</p>
-                        <div class="meta"><span class="badge">SignalR</span><span class="badge">Blazor</span><span class="badge">Power BI</span></div>
-                    </article>
-                </div>
-            </section>
-            <section id="contact" class="section">
-                <h2>Get in Touch</h2>
-                <form action="https://formspree.io/f/your-id" method="POST">
-                    <input name="name" placeholder="Your Name" required />
-                    <input name="_replyto" type="email" placeholder="Email Address" required />
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                    <button class="btn" type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
-                </form>
-            </section>
-            <footer>
-                © 2025 Ravi Kumar Mishra • <a href="mailto:ravi@example.com">ravi@example.com</a> • Built with Passion & Precision
-            </footer>
-        </main>
-        <script>
-            // Enhanced Light/Dark toggle with persistence
-            const modeBtn = document.getElementById('mode');
-            const saved = localStorage.getItem('theme');
-            if (saved === 'dark') { document.body.classList.add('dark'); modeBtn.textContent = '☀️'; }
-            modeBtn.addEventListener('click', () => {
-                document.body.classList.toggle('dark');
-                const isDark = document.body.classList.contains('dark');
-                modeBtn.textContent = isDark ? '☀️' : '🌙';
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            });
-        </script>
-    </body>
-    </html>*@
-
-@*@{
-        ViewBag.Title = "Simple Voice Input Form";
-        Layout = null;
-    }
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>Ravi Kumar Mishra • Full Stack .NET Developer</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-        <style>
-      :root{
-        --bg:#ffffff; --text:#0b1220; --muted:#475569; --card:#f1f5f9;
-        --accent:#111827; --link:#0ea5e9; --ring:0 0 0 3px rgba(14,165,233,.25);
-      }
-      .dark{
-        --bg:#0b1220; --text:#e5e7eb; --muted:#94a3b8; --card:#0f172a;
-        --accent:#e5e7eb; --link:#22d3ee; --ring:0 0 0 3px rgba(34,211,238,.25);
-      }
-      *{box-sizing:border-box} html{scroll-behavior:smooth}
-      body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
-      a{color:var(--link);text-decoration:none}
-      .wrap{max-width:1100px;margin:auto;padding:0 1.2rem}
-      /* nav */
-      .nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.6);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid #e2e8f0}
-      .dark .nav{background:rgba(11,18,32,.6);border-bottom:1px solid #0f172a}
-      .nav-inner{height:64px;display:flex;align-items:center;gap:1rem}
-      .brand{font-weight:800}
-      .spacer{flex:1}
-      .link{color:var(--muted);margin-left:1rem}
-      .link:hover{color:var(--text)}
-      .toggle{border:1px solid #e2e8f0;background:var(--card);color:var(--text);border-radius:999px;padding:.45rem .8rem;cursor:pointer}
-      .dark .toggle{border-color:#1f2937}
-      /* hero */
-      .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center;padding:56px 0}
-      h1{font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.05;margin:.4rem 0 1rem}
-      .lead{color:var(--muted);max-width:56ch}
-      .cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.2rem}
-      .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 1.2rem;border-radius:.9rem;font-weight:700;background:#111827;color:#fff;border:1px solid #0b1220}
-      .dark .btn{background:#e5e7eb;color:#0b1220;border-color:#e5e7eb}
-      .btn.ghost{background:var(--card);color:var(--text);border:1px solid #e2e8f0}
-      .dark .btn.ghost{border-color:#1f2937}
-      .photo{display:flex;justify-content:center}
-      .photo img{
-        width:280px;height:280px;border-radius:50%;
-        background:#fff;border:8px solid var(--card);box-shadow:0 10px 40px rgba(0,0,0,.12);object-fit:cover;
-      }
-      /* sections */
-      .section{padding:64px 0;border-top:1px solid #e2e8f0}
-      .dark .section{border-top:1px solid #0f172a}
-      h2{font-size:1.8rem;margin:0 0 1rem}
-      .grid{display:grid;gap:1rem}
-      .skills{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
-      .card{background:var(--card);border:1px solid #e2e8f0;border-radius:16px;padding:1rem}
-      .dark .card{border-color:#1f2937}
-      .projects{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-      .meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.4rem}
-      .badge{display:inline-block;padding:.35rem .6rem;border-radius:999px;border:1px solid #e2e8f0;background:#fff;color:#111827}
-      .dark .badge{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
-      form{display:grid;gap:.9rem;max-width:520px}
-      input,textarea{width:100%;padding:1rem;border-radius:.8rem;border:1px solid #e2e8f0;background:var(--bg);color:var(--text)}
-      .dark input,.dark textarea{border-color:#1f2937}
-      input:focus,textarea:focus{outline:none;box-shadow:var(--ring)}
-      textarea{min-height:140px}
-      footer{color:#64748b;padding:48px 0}
-      @@media (max-width:900px){.hero{grid-template-columns:1fr;text-align:center}}
-        </style>
-    </head>
-    <body>
-        <header class="nav">
-            <div class="wrap nav-inner">
-                <div class="brand">RaviMishra.dev</div>
-                <div class="spacer"></div>
-                <a class="link" href="#about">About</a>
-                <a class="link" href="#projects">Projects</a>
-                <a class="link" href="#contact">Contact</a>
-                <button id="mode" class="toggle" aria-label="Toggle theme">🌙</button>
-            </div>
-        </header>
-
-        <main class="wrap">
-            <section class="hero">
-                <div>
-                    <p class="lead">Full Stack .NET & Mobile Developer</p>
-                    <h1>Hi, I’m <span style="color:#0ea5e9">Ravi Kumar Mishra</span>.</h1>
-                    <p class="lead">I build fast, secure and elegant apps using ASP.NET Core, C#, EF Core, and .NET MAUI. I care about clean architecture and great UX.</p>
-                    <div class="cta">
-                        <a class="btn" href="#projects">View Projects</a>
-                        <a class="btn ghost" href="resume.pdf" download>Download CV</a>
-                    </div>
-                </div>
-                <div class="photo">
-                    <img src="~/Content/Animation/Ravi.jpeg" alt="Ravi Mishra" />
-                </div>
-            </section>
-
-            <section id="about" class="section">
-                <h2>About</h2>
-                <p class="lead">I deliver end-to-end features from database to UI, with testing and CI/CD. Comfortable with Blazor/Razor Pages, REST APIs, SQL Server/Azure SQL, and mobile with .NET MAUI.</p>
-            </section>
-
-            <section id="skills" class="section">
-                <h2>Skills</h2>
-                <div class="grid skills">
-                    <div class="card">ASP.NET Core / C#</div>
-                    <div class="card">Entity Framework Core</div>
-                    <div class="card">Blazor / Razor Pages</div>
-                    <div class="card">.NET MAUI / Xamarin</div>
-                    <div class="card">JavaScript / TypeScript</div>
-                    <div class="card">SQL Server / Azure</div>
-                </div>
-            </section>
-
-            <section id="projects" class="section">
-                <h2>Projects</h2>
-                <div class="grid projects">
-                    <article class="card">
-                        <h3>SmartExpense Tracker</h3>
-                        <p>Cross-platform expense app (.NET MAUI + SQLite), offline-first with sync.</p>
-                        <div class="meta"><span class="badge">.NET MAUI</span><span class="badge">SQLite</span></div>
-                    </article>
-                    <article class="card">
-                        <h3>ShopEase Web</h3>
-                        <p>Razor Pages + EF Core e-commerce, Stripe payments, Lighthouse 99+.</p>
-                        <div class="meta"><span class="badge">ASP.NET Core</span><span class="badge">Stripe</span></div>
-                    </article>
-                    <article class="card">
-                        <h3>InsightDash</h3>
-                        <p>Blazor + SignalR real-time KPIs with role-based access.</p>
-                        <div class="meta"><span class="badge">SignalR</span><span class="badge">Blazor</span></div>
-                    </article>
-                </div>
-            </section>
-
-            <section id="contact" class="section">
-                <h2>Contact</h2>
-                <form action="https://formspree.io/f/your-id" method="POST">
-                    <input name="name" placeholder="Your Name" required />
-                    <input name="_replyto" type="email" placeholder="Email Address" required />
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                    <button class="btn" type="submit">Send Message</button>
-                </form>
-            </section>
-
-            <footer>
-                © 2025 Ravi Kumar Mishra • <a href="mailto:ravi@example.com">ravi@example.com</a>
-            </footer>
-        </main>
-
-        <script>
-            // Light/Dark toggle persists
-            const modeBtn = document.getElementById('mode');
-            const saved = localStorage.getItem('theme');
-            if (saved === 'dark') { document.body.classList.add('dark'); modeBtn.textContent = '☀️'; }
-            modeBtn.addEventListener('click', () => {
-                document.body.classList.toggle('dark');
-                const dark = document.body.classList.contains('dark');
-                modeBtn.textContent = dark ? '☀️' : '🌙';
-                localStorage.setItem('theme', dark ? 'dark' : 'light');
-            });
-        </script>
-    </body>
-    </html>*@
-
-
-
-
-@*<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Ravi Kumar Mishra | Full Stack .NET & Mobile Developer</title>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-        <style>
-        :root {
-          --bg-dark: #050a18;
-          --text: #e2e8f0;
-          --muted: #94a3b8;
-          --accent: #00f5a0;
-          --accent2: #00d9f5;
-          --glass: rgba(255, 255, 255, 0.06);
-        }
-        * {margin: 0; padding: 0; box-sizing: border-box;}
-        html {scroll-behavior: smooth;}
-        body {
-          font-family: 'Poppins', sans-serif;
-          background: radial-gradient(circle at 25% 25%, #0f172a, var(--bg-dark));
-          color: var(--text);
-          overflow-x: hidden;
-        }
-        a {color: var(--accent); text-decoration: none;}
-        header {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          background: rgba(5,10,24,0.8);
-          backdrop-filter: blur(12px);
-          border-bottom: 1px solid rgba(255,255,255,0.05);
-          z-index: 999;
-        }
-        .nav {
-          max-width: 1200px;
-          margin: auto;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 1rem 1.5rem;
-        }
-        .nav h1 {
-          font-weight: 700;
-          color: var(--accent);
-          letter-spacing: 1px;
-        }
-        .nav ul {
-          list-style: none;
-          display: flex;
-          gap: 1.5rem;
-        }
-        .nav ul li a {
-          color: var(--muted);
-          font-weight: 500;
-          transition: color .2s;
-        }
-        .nav ul li a:hover {color: var(--accent2);}
-
-        /* Hero Section */
-        .hero {
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          padding: 2rem;
-          background: radial-gradient(circle at 80% 20%, var(--accent2), transparent 25%),
-                      radial-gradient(circle at 20% 80%, var(--accent), transparent 30%);
-          position: relative;
-          overflow: hidden;
-        }
-        .hero h1 {
-          font-size: clamp(2.5rem, 6vw, 4.5rem);
-          font-weight: 700;
-          background: linear-gradient(90deg, var(--accent), var(--accent2));
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          margin-bottom: 1rem;
-          animation: fadeDown 1s ease-out;
-        }
-        .hero h2 {
-          color: var(--muted);
-          margin-bottom: 1.2rem;
-          font-size: 1.2rem;
-          font-weight: 500;
-        }
-        .hero .typewriter {
-          font-size: 1.3rem;
-          font-weight: 600;
-          color: var(--accent);
-          border-right: 3px solid var(--accent);
-          white-space: nowrap;
-          overflow: hidden;
-          width: 0;
-          animation: typing 4s steps(30, end) infinite alternate, blink .7s infinite;
-        }
-        @@keyframes typing {
-          0% {width: 0;}
-          50% {width: 100%;}
-          100% {width: 0;}
-        }
-        @@keyframes blink {
-          50% {border-color: transparent;}
-        }
-        @@keyframes fadeDown {
-          from {opacity: 0; transform: translateY(-20px);}
-          to {opacity: 1; transform: translateY(0);}
-        }
-        .btn {
-          margin-top: 2rem;
-          padding: 1rem 2rem;
-          border-radius: 50px;
-          background: linear-gradient(90deg, var(--accent), var(--accent2));
-          color: #050a18;
-          font-weight: 600;
-          box-shadow: 0 4px 30px rgba(0, 245, 160, .3);
-          transition: transform .3s ease;
-        }
-        .btn:hover {transform: scale(1.05);}
-
-        /* Section Common */
-        section {
-          padding: 6rem 1.5rem;
-          max-width: 1100px;
-          margin: auto;
-        }
-        h2.section-title {
-          text-align: center;
-          font-size: 2.3rem;
-          margin-bottom: 2.5rem;
-          color: var(--accent);
-          position: relative;
-        }
-        h2.section-title::after {
-          content: "";
-          width: 80px;
-          height: 3px;
-          background: linear-gradient(90deg, var(--accent), var(--accent2));
-          display: block;
-          margin: 0.6rem auto;
-          border-radius: 3px;
-        }
-
-        /* About */
-        .about p {
-          max-width: 850px;
-          margin: auto;
-          color: var(--muted);
-          text-align: center;
-          font-size: 1.05rem;
-          line-height: 1.8;
-        }
-
-        /* Skills */
-        .skills-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-          gap: 1.5rem;
-          margin-top: 2rem;
-        }
-        .skill-card {
-          background: var(--glass);
-          border: 1px solid rgba(255,255,255,0.05);
-          border-radius: 14px;
-          padding: 1.5rem;
-          text-align: center;
-          transition: transform .2s, box-shadow .2s;
-        }
-        .skill-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 0 20px rgba(0,217,245,.15);
-        }
-
-        /* Projects */
-        .projects-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 1.8rem;
-        }
-        .project-card {
-          background: var(--glass);
-          border: 1px solid rgba(255,255,255,0.05);
-          border-radius: 16px;
-          padding: 1.8rem;
-          transition: transform .3s;
-        }
-        .project-card:hover {transform: translateY(-8px);}
-        .project-card h3 {color: var(--accent2); margin-bottom: .5rem;}
-        .project-card p {color: var(--muted); font-size: .95rem; line-height: 1.6;}
-
-        /* Contact */
-        form {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-          max-width: 500px;
-          margin: 2rem auto;
-        }
-        input, textarea {
-          padding: 1rem;
-          border-radius: 10px;
-          border: none;
-          background: #1e293b;
-          color: var(--text);
-          font-size: 1rem;
-        }
-        input:focus, textarea:focus {
-          outline: 2px solid var(--accent2);
-        }
-
-        footer {
-          text-align: center;
-          padding: 2rem;
-          color: var(--muted);
-          border-top: 1px solid rgba(255,255,255,0.05);
-          background: rgba(5,10,24,0.8);
-        }
-        footer a {color: var(--accent2);}
-        </style>
-    </head>
-    <body>
-
-        <header>
-            <div class="nav">
-                <h1>RaviMishra.dev</h1>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </header>
-
-        <section class="hero">
-            <h2>Hello, I’m</h2>
-            <h1>Ravi Kumar Mishra</h1>
-            <div class="typewriter">Full Stack .NET & Mobile Developer 💻</div>
-            <p style="margin-top:1.5rem;max-width:600px;color:var(--muted);">
-                I build high-performance Web & Mobile applications using modern Microsoft tech stack — ASP.NET Core, C#, Blazor, and .NET MAUI.
-            </p>
-            <a href="#projects" class="btn">Explore My Work</a>
-        </section>
-
-        <section id="about">
-            <h2 class="section-title">About Me</h2>
-            <p>
-                I’m a passionate Full Stack Developer specializing in .NET technologies with experience building scalable, maintainable solutions for both web and mobile platforms.
-                I love working on complex problems and creating seamless user experiences that perform beautifully across all devices.
-            </p>
-        </section>
-
-        <section id="skills">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">ASP.NET Core</div>
-                <div class="skill-card">C# / LINQ</div>
-                <div class="skill-card">Entity Framework Core</div>
-                <div class="skill-card">.NET MAUI / Xamarin</div>
-                <div class="skill-card">Blazor / Razor Pages</div>
-                <div class="skill-card">JavaScript / TypeScript</div>
-                <div class="skill-card">SQL Server / Azure</div>
-                <div class="skill-card">REST APIs / JSON</div>
-                <div class="skill-card">Azure DevOps / Git</div>
-            </div>
-        </section>
-
-        <section id="projects">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>📱 SmartExpense Tracker</h3>
-                    <p>Cross-platform mobile app built using .NET MAUI + SQLite to manage and sync expenses across devices securely with cloud backup.</p>
-                </div>
-                <div class="project-card">
-                    <h3>🛍️ ShopEase Web</h3>
-                    <p>E-commerce site built on ASP.NET Core + Razor Pages with Stripe integration, advanced caching, and responsive UI for all devices.</p>
-                </div>
-                <div class="project-card">
-                    <h3>📊 InsightDash</h3>
-                    <p>Powerful analytics dashboard using Blazor Server + SignalR for live KPI updates, real-time charts, and Azure-hosted APIs.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2 class="section-title">Get In Touch</h2>
-            <form action="https://formspree.io/f/your-id" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required />
-                <input type="email" name="_replyto" placeholder="Email Address" required />
-                <textarea name="message" placeholder="Your Message" required></textarea>
-                <button class="btn" type="submit">Send Message</button>
-            </form>
-        </section>
-
-        <footer>
-            <p>© 2025 Ravi Kumar Mishra • Full Stack .NET Developer</p>
-            <p>
-                <a href="https://github.com/ravimishra" target="_blank">GitHub</a> ·
-                <a href="https://linkedin.com/in/ravikumar-mishra" target="_blank">LinkedIn</a> ·
-                <a href="mailto:ravi@example.com">Email</a>
-            </p>
-        </footer>
-
-    </body>
-    </html>*@
-
