@@ -398,70 +398,82 @@
         });
     </script>
 
-    <div class="sticky_icons">
+    <!-- STICKY ICONS -->
+<div class="sticy_icons">
     <div class="sticky_icons_group">
         <div id="ic1" class="icon_container r-first" style="background: white;">
-            <a href="https://wa.me/7770931708" target="_blank" style="color: #fff;">
-                <lottie-player id="lottieWhatsApp"
-                               src='@Url.Content("Content/Animation/whatsapp.json")'
-                               background="transparent"
-                               speed="0.4"
-                               style="width: 30px; height: 30px; cursor: pointer;"
-                               loop autoplay>
+            <a href="https://wa.me/7770931708" target="_blank" style="background: none; border: none; color: #fff; font-size: 17px;">
+                <lottie-player
+                    src="Content/Animation/whatsapp.json"
+                    background="transparent"
+                    speed="0.4"
+                    style="width: 30px; height: 30px; cursor: pointer;"
+                    loop
+                    autoplay>
                 </lottie-player>
             </a>
         </div>
+
         <div id="ic2" class="icon_container r-second" style="background: white;">
-            <button type="button" id="installBtn" style="border: none; background: none; cursor: pointer;">
-                <lottie-player id="lottieDownload"
-                               src='@Url.Content("Content/Animation/download.json")'
-                               background="transparent"
-                               speed="0.5"
-                               style="width: 30px; height: 20px; cursor: pointer;"
-                               loop autoplay>
+            <button type="button" id="installBtn" style="background: none; border: none; color: #fff; font-size: 17px; cursor: pointer;">
+                <lottie-player
+                    src="Content/Animation/download.json"
+                    background="transparent"
+                    speed="0.5"
+                    style="width: 30px; height: 20px; cursor: pointer;"
+                    loop
+                    autoplay>
                 </lottie-player>
             </button>
         </div>
+
         <div id="ic3" class="icon_container r-third" style="background: white;">
-            <button type="button" onclick="lockWeb()" style="border: none; cursor: pointer;">
-                <lottie-player id="lottieLock"
-                               src='@Url.Content("Content/Animation/lock.json")'
-                               background="transparent"
-                               speed="0.5"
-                               style="width: 30px; height: 20px; cursor: pointer;"
-                               loop autoplay>
+            <button type="button" onclick="lockWeb()" style="border: none; color: white; font-size: 17px; cursor: pointer;">
+                <lottie-player
+                    src="Content/Animation/lock.json"
+                    background="transparent"
+                    speed="0.5"
+                    style="width: 30px; height: 20px; cursor: pointer;"
+                    loop
+                    autoplay>
                 </lottie-player>
             </button>
         </div>
+
         <div id="ic4" class="icon_container r-fourth" style="background: white;">
-            <a href="tel:+917770931708" style="color: #fff;">
-                <lottie-player id="lottieCall"
-                               src='@Url.Content("Content/Animation/call.json")'
-                               background="transparent"
-                               speed="0.5"
-                               style="width: 35px; height: 40px; cursor: pointer;"
-                               loop autoplay>
+            <a href="tel:+917770931708" style="color: #ffff; font-size: 18px;">
+                <lottie-player
+                    src="Content/Animation/call.json"
+                    background="transparent"
+                    speed="0.5"
+                    style="width: 35px; height: 40px; cursor: pointer;"
+                    loop
+                    autoplay>
                 </lottie-player>
             </a>
         </div>
+
         <div id="ic5" class="icon_container r-fifth" style="background: white;">
-            <a href="mailto:careers@oswaldata.com" style="color: #fff;">
-                <lottie-player id="lottieContact"
-                               src='@Url.Content("Content/Animation/contact.json")'
-                               background="transparent"
-                               speed="0.5"
-                               style="width: 35px; height: 40px; cursor: pointer;"
-                               loop autoplay>
+            <a href="mailto:careers@oswaldata.com" style="color: #ffff; font-size: 18px;">
+                <lottie-player
+                    src="Content/Animation/contact.json"
+                    background="transparent"
+                    speed="0.5"
+                    style="width: 35px; height: 40px; cursor: pointer;"
+                    loop
+                    autoplay>
                 </lottie-player>
             </a>
         </div>
-        <div class="icon_container sticky_icons_group_last" style="background: white;" onclick="toggleClass()">
-            <lottie-player id="lottieCircle"
-                           src='@Url.Content("Content/Animation/circle2.json")'
-                           background="transparent"
-                           speed="0.5"
-                           style="width: 40px; height: 40px; cursor: pointer;"
-                           loop autoplay>
+
+        <div class="icon_container sticky_icons_group_last" style="background: white;" id="toggleBtn">
+            <lottie-player
+                src="Content/Animation/circle2.json"
+                background="transparent"
+                speed="0.5"
+                style="width: 40px; height: 40px; cursor: pointer;"
+                loop
+                autoplay>
             </lottie-player>
         </div>
     </div>
@@ -473,16 +485,25 @@
 </div>
 
 <script>
-function lockWeb() {
-    document.getElementById('webLock').style.display = 'block';
-}
-function unlockWeb() {
-    document.getElementById('webLock').style.display = 'none';
-}
+    // Toggle function
+    const toggleBtn = document.getElementById('toggleBtn');
+    toggleBtn.addEventListener('click', () => {
+        toggleBtn.classList.toggle('active'); // example class
+    });
+
+    function lockWeb() {
+        document.getElementById('webLock').style.display = 'block';
+    }
+
+    function unlockWeb() {
+        document.getElementById('webLock').style.display = 'none';
+    }
 </script>
+
 
 </body>
 </html>
+
 
 
 
