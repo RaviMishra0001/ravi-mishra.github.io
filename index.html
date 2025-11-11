@@ -166,14 +166,30 @@
                 <i class="fas fa-bars"></i>
             </button>  -->
 
-          <button id="mobileBtn" class="md:hidden flex flex-col justify-between w-8 h-8 px-1 py-1 space-y-1">
-    <!-- Top long line -->
-    <span class="block h-1 w-full bg-neon rounded-full"></span>
-    <!-- Middle short line -->
-    <span class="block h-1 w-1/2 bg-neon rounded-full self-end"></span>
-    <!-- Bottom medium line -->
-    <span class="block h-1 w-3/4 bg-neon rounded-full"></span>
+         <!-- Animated Hamburger Button -->
+<button id="mobileBtn" class="md:hidden flex flex-col justify-between w-8 h-8 px-1 py-1 group relative">
+    <span class="block h-1 w-full bg-neon rounded-full transform transition-all duration-300 origin-left" id="line1"></span>
+    <span class="block h-1 w-1/2 bg-neon rounded-full self-end transform transition-all duration-300 origin-left" id="line2"></span>
+    <span class="block h-1 w-3/4 bg-neon rounded-full transform transition-all duration-300 origin-left" id="line3"></span>
 </button>
+
+<script>
+const mobileBtn = document.getElementById('mobileBtn');
+const line1 = document.getElementById('line1');
+const line2 = document.getElementById('line2');
+const line3 = document.getElementById('line3');
+
+mobileBtn.addEventListener('click', () => {
+    line1.classList.toggle('rotate-45');
+    line1.classList.toggle('translate-y-2');
+
+    line2.classList.toggle('opacity-0');
+
+    line3.classList.toggle('-rotate-45');
+    line3.classList.toggle('-translate-y-2');
+});
+</script>
+
 
 
         </div>
@@ -508,6 +524,7 @@
 
 </body>
 </html>
+
 
 
 
