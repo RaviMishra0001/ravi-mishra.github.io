@@ -162,9 +162,16 @@
                 <a href="#projects" class="hover:text-neon transition">Projects</a>
                 <a href="#contact" class="hover:text-neon transition">Contact</a>
             </div>
-            <button id="mobileBtn" class="md:hidden text-2xl text-neon">
+        <!--     <button id="mobileBtn" class="md:hidden text-2xl text-neon">
                 <i class="fas fa-bars"></i>
-            </button>
+            </button>  -->
+
+            <button id="mobileBtn" class="md:hidden relative w-8 h-8 flex flex-col justify-between items-center group">
+    <span class="block w-full h-1 bg-neon rounded transition-all duration-300 ease-in-out origin-left group-hover:rotate-45 group-hover:translate-y-2"></span>
+    <span class="block w-full h-1 bg-neon rounded transition-all duration-300 ease-in-out group-hover:opacity-0"></span>
+    <span class="block w-full h-1 bg-neon rounded transition-all duration-300 ease-in-out origin-left group-hover:-rotate-45 group-hover:-translate-y-2"></span>
+</button>
+
         </div>
     </nav>
 
@@ -497,6 +504,7 @@
 
 </body>
 </html>
+
 
 
 
