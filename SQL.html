@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL All Vs - Interview Cheat Sheet</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #64748b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --border: #e2e8f0;
+            --radius: 12px;
+            --shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.7;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), #1d4ed8);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .section {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary);
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .comparison-card {
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary), #3b82f6);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .card-body {
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: #f1f5f9;
+            font-weight: 600;
+            color: var(--dark);
+            width: 50%;
+            position: relative;
+        }
+
+        th:first-child {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            color: var(--primary);
+        }
+
+        th:last-child {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            color: #92400e;
+        }
+
+        td {
+            background: white;
+        }
+
+        td:first-child {
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+       
+
+        .code-block {
+            background: #1a1a1a;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            border: 1px solid #333;
+        }
+
+        .code-comment {
+            color: #6e7681;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .badge-primary {
+            background: #dbeafe;
+            color: var(--primary);
+        }
+
+        .badge-success {
+            background: #d1fae5;
+            color: var(--success);
+        }
+
+        .badge-danger {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+
+        .badge-warning {
+            background: #fffbeb;
+            color: var(--warning);
+        }
+
+        .icon {
+            margin-right: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #fde047 0%, #fbbf24 100%);
+            color: #000;
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--dark);
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 1rem;
+            }
+            
+            table {
+                font-size: 0.85rem;
+            }
+            
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+
+        .print-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .print-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+            .print-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>All SQL Vs</h1>
+            <p>Complete Interview Cheat Sheet - Key Differences Explained</p>
+        </header>
+
+        <div class="section">
+            <h2 class="section-title">1. Primary Key vs Unique Key</h2>
+            <div class="comparison-card">
+                <div class="card-header">Primary Key vs Unique Key</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>Primary Key</th>
+                            <th>Unique Key</th>
+                        </tr>
+                        <tr>
+                            <td>Uniquely identifies each row</td>
+                            <td>Ensures column values are unique</td>
+                        </tr>
+                        <tr>
+                            <td>Only <span class="badge badge-danger">one</span> primary key allowed per table</td>
+                            <td><span class="badge badge-success">Multiple</span> unique keys allowed per table</td>
+                        </tr>
+                        <tr>
+                            <td>Does <span class="highlight">not allow</span> NULL values</td>
+                            <td>Allows <span class="highlight">one</span> NULL value in a column</td>
+                        </tr>
+                        <tr>
+                            <td>Creates a <span class="highlight">clustered index</span> by default</td>
+                            <td>Creates a <span class="highlight">non-clustered index</span> by default</td>
+                        </tr>
+                        <tr>
+                            <td>Used to enforce <span class="highlight">entity integrity</span></td>
+                            <td>Used to enforce <span class="highlight">uniqueness</span> without entity constraint</td>
+                        </tr>
+                    </table>
+                    <div class="code-block">
+                        <span class="code-comment">-- Example</span><br>
+                        CREATE TABLE Students (<br>
+                        &nbsp;&nbsp;ID INT <span style="color:#ff79c6;">PRIMARY KEY</span>,<br>
+                        &nbsp;&nbsp;Email VARCHAR(100) <span style="color:#ff79c6;">UNIQUE</span><br>
+                        );
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">2. Clustered Index vs Non-Clustered Index</h2>
+            <div class="comparison-card">
+                <div class="card-header">Clustered vs Non-Clustered Index</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>Clustered Index</th>
+                            <th>Non-Clustered Index</th>
+                        </tr>
+                        <tr>
+                            <td>Sorts and stores the actual data rows physically</td>
+                            <td>Stores a separate structure with pointers to data rows</td>
+                        </tr>
+                        <tr>
+                            <td>Only <span class="badge badge-danger">one clustered index</span> allowed per table</td>
+                            <td><span class="badge badge-success">Multiple</span> non-clustered indexes allowed</td>
+                        </tr>
+                        <tr>
+                            <td>Faster for <span class="highlight">range queries</span> (BETWEEN, >, <)</td>
+                            <td>Faster for <span class="highlight">exact match</span> queries (= operator)</td>
+                        </tr>
+                        <tr>
+                            <td>Changes the physical order of data on disk</td>
+                            <td>Does <span class="highlight">not</span> change physical data order</td>
+                        </tr>
+                    </table>
+                    <div class="code-block">
+                        <span class="code-comment">-- Clustered index usually created with PRIMARY KEY</span><br>
+                        CREATE TABLE Employees (<br>
+                        &nbsp;&nbsp;EmployeeID INT <span style="color:#ff79c6;">PRIMARY KEY</span>, <span class="code-comment">-- Clustered Index</span><br>
+                        &nbsp;&nbsp;Name VARCHAR(100)<br>
+                        );<br><br>
+                        <span class="code-comment">-- Creating non-clustered index</span><br>
+                        CREATE NONCLUSTERED INDEX idx_Name ON Employees(Name);
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">3. DELETE vs TRUNCATE vs DROP</h2>
+            <div class="comparison-card">
+                <div class="card-header">DELETE vs TRUNCATE vs DROP</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>DELETE</th>
+                            <th>TRUNCATE</th>
+                            <th>DROP</th>
+                        </tr>
+                        <tr>
+                            <td>Deletes specific rows (can use WHERE clause)</td>
+                            <td>Deletes <span class="highlight">all</span> rows from the table quickly</td>
+                            <td>Deletes the entire table structure and data</td>
+                        </tr>
+                        <tr>
+                            <td>Logs deletion of <span class="highlight">each row</span> individually</td>
+                            <td>Logs deallocation of data pages (less logging)</td>
+                            <td>Removes table metadata and data permanently</td>
+                        </tr>
+                        <tr>
+                            <td>Can be <span class="badge badge-success">rolled back</span> within a transaction</td>
+                            <td>Usually <span class="badge badge-danger">cannot</span> be rolled back</td>
+                            <td>Cannot be rolled back once executed</td>
+                        </tr>
+                        <tr>
+                            <td>Triggers are fired on DELETE</td>
+                            <td>Triggers <span class="highlight">do not</span> fire</td>
+                            <td>Triggers removed with table</td>
+                        </tr>
+                    </table>
+                    <div class="code-block">
+                        DELETE FROM Employees WHERE Department = 'Sales';<br>
+                        TRUNCATE TABLE Employees;<br>
+                        DROP TABLE Employees;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">4. WHERE vs HAVING</h2>
+            <div class="comparison-card">
+                <div class="card-header">WHERE vs HAVING</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>WHERE</th>
+                            <th>HAVING</th>
+                        </tr>
+                        <tr>
+                            <td>Filters individual rows <span class="highlight">before</span> grouping</td>
+                            <td>Filters groups <span class="highlight">after</span> aggregation</td>
+                        </tr>
+                        <tr>
+                            <td>Cannot use aggregate functions</td>
+                            <td>Can use aggregate functions to filter groups</td>
+                        </tr>
+                        <tr>
+                            <td>Used with SELECT, UPDATE, DELETE</td>
+                            <td>Used mainly with GROUP BY in SELECT</td>
+                        </tr>
+                        <tr>
+                            <td>Generally faster (filters early)</td>
+                            <td>Filters results after groups are formed</td>
+                        </tr>
+                    </table>
+                    <div class="code-block">
+                        <span class="code-comment">-- Using WHERE to filter rows before grouping</span><br>
+                        SELECT Department, COUNT(*)<br>
+                        FROM Employees<br>
+                        WHERE Salary > 50000<br>
+                        GROUP BY Department;<br><br>
+                        <span class="code-comment">-- Using HAVING to filter groups after aggregation</span><br>
+                        SELECT Department, COUNT(*)<br>
+                        FROM Employees<br>
+                        GROUP BY Department<br>
+                        HAVING COUNT(*) > 5;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">5. INNER JOIN vs LEFT JOIN vs RIGHT JOIN vs FULL JOIN</h2>
+            <div class="comparison-card">
+                <div class="card-header">Types of JOINs</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>INNER JOIN</th>
+                            <th>LEFT JOIN</th>
+                            <th>RIGHT JOIN</th>
+                            <th>FULL JOIN</th>
+                        </tr>
+                        <tr>
+                            <td>Returns only rows with matching values in both tables</td>
+                            <td>Returns all rows from <span class="highlight">left</span> table + matching rows from right</td>
+                            <td>Returns all rows from <span class="highlight">right</span> table + matching rows from left</td>
+                            <td>Returns <span class="highlight">all rows</span> from both tables</td>
+                        </tr>
+                        <tr>
+                            <td>Non-matching rows are excluded</td>
+                            <td>Non-matching right table rows return NULL</td>
+                            <td>Non-matching left table rows return NULL</td>
+                            <td>Non-matching rows from both sides return NULL</td>
+                        </tr>
+                        <tr>
+                            <td>Usually used for <span class="highlight">strict matching</span></td>
+                            <td>Want all left side data regardless of matches</td>
+                            <td>Want all right side data regardless of matches</td>
+                            <td>Want complete data from both tables</td>
+                        </tr>
+                    </table>
+                    <div class="code-block">
+                        SELECT * FROM A INNER JOIN B ON A.ID = B.ID;<br>
+                        SELECT * FROM A LEFT JOIN B ON A.ID = B.ID;<br>
+                        SELECT * FROM A RIGHT JOIN B ON A.ID = B.ID;<br>
+                        SELECT * FROM A FULL JOIN B ON A.ID = B.ID;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">6. UNION vs UNION ALL</h2>
+            <div class="comparison-card">
+                <div class="card-header">UNION vs UNION ALL</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>UNION</th>
+                            <th>UNION ALL</th>
+                        </tr>
+                        <tr>
+                            <td>Removes duplicate rows from the combined result set</td>
+                            <td>Includes all rows, including duplicates</td>
+                        </tr>
+                        <tr>
+                            <td>Slower performance due to duplicate elimination</td>
+                            <td>Faster performance; no duplicate checking</td>
+                        </tr>
+                        <tr>
+                            <td>Requires sorting or hashing internally</td>
+                            <td>Simply appends result sets without sorting</td>
+                        </tr>
+                        <tr>
+                            <td>Useful when you want distinct results only</td>
+                            <td>Useful when duplicates are acceptable</td>
+                        </tr>
+                    </table>
+                    <div class="code-block">
+                        SELECT City FROM Customers<br>
+                        UNION<br>
+                        SELECT City FROM Suppliers;<br><br>
+                        SELECT City FROM Customers<br>
+                        UNION ALL<br>
+                        SELECT City FROM Suppliers;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">7. Subquery vs Join</h2>
+            <div class="comparison-card">
+                <div class="card-header">Subquery vs Join</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>Subquery</th>
+                            <th>Join</th>
+                        </tr>
+                        <tr>
+                            <td>A query nested inside another query</td>
+                            <td>Combines rows from two or more tables</td>
+                        </tr>
+                        <tr>
+                            <td>Can return single value or table</td>
+                            <td>Returns combined rows as a result set</td>
+                        </tr>
+                        <tr>
+                            <td>Sometimes less efficient</td>
+                            <td>Generally more efficient for large datasets</td>
+                        </tr>
+                        <tr>
+                            <td>Easier to write for simple conditions</td>
+                            <td>Better for complex queries involving multiple tables</td>
+                        </tr>
+                    </table>
+                    <div class="code-block">
+                        <span class="code-comment">-- Subquery</span><br>
+                        SELECT Name FROM Employees <br>
+                        WHERE DepartmentID = (SELECT ID FROM Departments WHERE Name = 'HR');<br><br>
+                        <span class="code-comment">-- Join</span><br>
+                        SELECT Employees.Name, Departments.Name<br>
+                        FROM Employees<br>
+                        JOIN Departments ON Employees.DepartmentID = Departments.ID;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">8. CHAR vs VARCHAR</h2>
+            <div class="comparison-card">
+                <div class="card-header">CHAR vs VARCHAR</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>CHAR</th>
+                            <th>VARCHAR</th>
+                        </tr>
+                        <tr>
+                            <td>Fixed length data type</td>
+                            <td>Variable length data type</td>
+                        </tr>
+                        <tr>
+                            <td>Pads extra spaces to fill the length</td>
+                            <td>Stores only the entered characters</td>
+                        </tr>
+                        <tr>
+                            <td>Uses fixed amount of storage</td>
+                            <td>Uses storage based on actual data size</td>
+                        </tr>
+                        <tr>
+                            <td>Faster for fixed-size data</td>
+                            <td>More flexible and space-efficient</td>
+                        </tr>
+                    </table>
+                    <div class="code-block">
+                        <span class="code-comment">-- CHAR(10) stores exactly 10 characters</span><br>
+                        DECLARE @charExample CHAR(10) = 'Hello';<br><br>
+                        <span class="code-comment">-- VARCHAR(10) stores only characters entered</span><br>
+                        DECLARE @varcharExample VARCHAR(10) = 'Hello';
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">9. Stored Procedure vs Function</h2>
+            <div class="comparison-card">
+                <div class="card-header">Stored Procedure vs Function</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>Stored Procedure</th>
+                            <th>Function</th>
+                        </tr>
+                        <tr>
+                            <td>Can perform DML and DDL</td>
+                            <td>Limited DML allowed</td>
+                        </tr>
+                        <tr>
+                            <td>Does <span class="highlight">not have to</span> return a value</td>
+                            <td><span class="highlight">Must</span> return a value</td>
+                        </tr>
+                        <tr>
+                            <td>Can call other procedures and functions</td>
+                            <td>Can call only other functions</td>
+                        </tr>
+                        <tr>
+                            <td>Supports transaction control</td>
+                            <td>Limited transaction control</td>
+                        </tr>
+                    </table>
+                    <div class="code-block">
+                        <span class="code-comment">-- Stored Procedure</span><br>
+                        CREATE PROCEDURE usp_GetEmployeeCount<br>
+                        AS<br>
+                        BEGIN<br>
+                        &nbsp;&nbsp;SELECT COUNT(*) FROM Employees;<br>
+                        END;<br><br>
+                        <span class="code-comment">-- Function</span><br>
+                        CREATE FUNCTION dbo.fn_GetEmployeeCount()<br>
+                        RETURNS INT<br>
+                        AS<br>
+                        BEGIN<br>
+                        &nbsp;&nbsp;RETURN (SELECT COUNT(*) FROM Employees);<br>
+                        END;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">10. View vs Table</h2>
+            <div class="comparison-card">
+                <div class="card-header">View vs Table</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>View</th>
+                            <th>Table</th>
+                        </tr>
+                        <tr>
+                            <td>Virtual table based on a SELECT query</td>
+                            <td>Physical storage of data</td>
+                        </tr>
+                        <tr>
+                            <td>Does <span class="highlight">not</span> store data physically</td>
+                            <td>Stores data physically in database</td>
+                        </tr>
+                        <tr>
+                            <td>Used for abstraction and security</td>
+                            <td>Used for storing actual data</td>
+                        </tr>
+                        <tr>
+                            <td>Data is <span class="highlight">dynamic</span></td>
+                            <td>Data is static until updated</td>
+                        </tr>
+                    </table>
+                    <div class="code-block">
+                        <span class="code-comment">-- Create a view</span><br>
+                        CREATE VIEW vw_ActiveEmployees AS<br>
+                        SELECT * FROM Employees WHERE Status = 'Active';<br><br>
+                        <span class="code-comment">-- Create a table</span><br>
+                        CREATE TABLE Employees (<br>
+                        &nbsp;&nbsp;EmployeeID INT PRIMARY KEY,<br>
+                        &nbsp;&nbsp;Name VARCHAR(100),<br>
+                        &nbsp;&nbsp;Status VARCHAR(10)<br>
+                        );
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">11. Temporary Table vs Table Variable</h2>
+            <div class="comparison-card">
+                <div class="card-header">Temp Table vs Table Variable</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>Temporary Table</th>
+                            <th>Table Variable</th>
+                        </tr>
+                        <tr>
+                            <td>Created and stored in <span class="highlight">tempdb</span> database</td>
+                            <td>Stored in memory (more lightweight)</td>
+                        </tr>
+                        <tr>
+                            <td>Supports indexes, constraints, and statistics</td>
+                            <td>Limited support for indexes and constraints</td>
+                        </tr>
+                        <tr>
+                            <td>Can be used across multiple batches</td>
+                            <td>Scope limited to the batch or procedure</td>
+                        </tr>
+                        <tr>
+                            <td>Can handle large amounts of data</td>
+                            <td>Best suited for small datasets</td>
+                        </tr>
+                    </table>
+                    <div class="code-block">
+                        <span class="code-comment">-- Temporary Table</span><br>
+                        CREATE TABLE #TempEmployees (ID INT, Name VARCHAR(50));<br><br>
+                        <span class="code-comment">-- Table Variable</span><br>
+                        DECLARE @TempEmployees TABLE (ID INT, Name VARCHAR(50));
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">12. Cross Join vs Inner Join</h2>
+            <div class="comparison-card">
+                <div class="card-header">Cross Join vs Inner Join</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>Cross Join</th>
+                            <th>Inner Join</th>
+                        </tr>
+                        <tr>
+                            <td>Returns <span class="highlight">Cartesian product</span></td>
+                            <td>Returns only rows with matching values</td>
+                        </tr>
+                        <tr>
+                            <td>No ON or JOIN condition needed</td>
+                            <td>Requires ON condition</td>
+                        </tr>
+                        <tr>
+                            <td>Result size = rows A × rows B</td>
+                            <td>Result size depends on matching rows</td>
+                        </tr>
+                        <tr>
+                            <td>Used when all combinations needed</td>
+                            <td>Used for filtering related data</td>
+                        </tr>
+                    </table>
+                    <div class="code-block">
+                        <span class="code-comment">-- Cross Join (Cartesian product)</span><br>
+                        SELECT * FROM Employees CROSS JOIN Departments;<br><br>
+                        <span class="code-comment">-- Inner Join</span><br>
+                        SELECT * FROM Employees INNER JOIN Departments ON Employees.DeptID = Departments.ID;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">13. Primary Key vs Foreign Key</h2>
+            <div class="comparison-card">
+                <div class="card-header">PK vs FK</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>Primary Key</th>
+                            <th>Foreign Key</th>
+                        </tr>
+                        <tr>
+                            <td>Uniquely identifies each row in a table</td>
+                            <td>Creates a link between two tables</td>
+                        </tr>
+                        <tr>
+                            <td>Does <span class="highlight">not allow NULL</span></td>
+                            <td>Can allow NULL values</td>
+                        </tr>
+                        <tr>
+                            <td>Only one per table</td>
+                            <td>Multiple per table</td>
+                        </tr>
+                        <tr>
+                            <td>Enforces <span class="highlight">entity integrity</span></td>
+                            <td>Enforces <span class="highlight">referential integrity</span></td>
+                        </tr>
+                    </table>
+                    <div class="code-block">
+                        CREATE TABLE Departments (<br>
+                        &nbsp;&nbsp;DeptID INT PRIMARY KEY,<br>
+                        &nbsp;&nbsp;DeptName VARCHAR(100)<br>
+                        );<br><br>
+                        CREATE TABLE Employees (<br>
+                        &nbsp;&nbsp;EmployeeID INT PRIMARY KEY,<br>
+                        &nbsp;&nbsp;Name VARCHAR(100),<br>
+                        &nbsp;&nbsp;DeptID INT,<br>
+                        &nbsp;&nbsp;FOREIGN KEY (DeptID) REFERENCES Departments(DeptID)<br>
+                        );
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">14. DDL vs DML vs DCL vs TCL</h2>
+            <div class="comparison-card">
+                <div class="card-header">SQL Command Types</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>DDL</th>
+                            <th>DML</th>
+                            <th>DCL</th>
+                            <th>TCL</th>
+                        </tr>
+                        <tr>
+                            <td>CREATE, ALTER, DROP</td>
+                            <td>SELECT, INSERT, UPDATE, DELETE</td>
+                            <td>GRANT, REVOKE</td>
+                            <td>COMMIT, ROLLBACK, SAVEPOINT</td>
+                        </tr>
+                        <tr>
+                            <td>Defines database structure</td>
+                            <td>Manipulates data</td>
+                            <td>Manages permissions</td>
+                            <td>Manages transactions</td>
+                        </tr>
+                        <tr>
+                            <td>Affects metadata</td>
+                            <td>Affects actual data</td>
+                            <td>Security control</td>
+                            <td>Atomic operations</td>
+                        </tr>
+                        <tr>
+                            <td>Auto-committed</td>
+                            <td>Can be rolled back</td>
+                            <td>Permission commands</td>
+                            <td>Transaction control</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">15. Rank() vs Dense_Rank() vs Row_Number()</h2>
+            <div class="comparison-card">
+                <div class="card-header">Window Functions</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>Rank()</th>
+                            <th>Dense_Rank()</th>
+                            <th>Row_Number()</th>
+                        </tr>
+                        <tr>
+                            <td>Gaps for ties (1,2,2,4)</td>
+                            <td>No gaps (1,2,2,3)</td>
+                            <td>Unique numbers (1,2,3,4)</td>
+                        </tr>
+                        <tr>
+                            <td>Skips numbers after ties</td>
+                            <td>Continues without skipping</td>
+                            <td>Always increments by 1</td>
+                        </tr>
+                        <tr>
+                            <td>Useful for ranking with gaps</td>
+                            <td>Useful without gaps</td>
+                            <td>Useful for unique numbering</td>
+                        </tr>
+                    </table>
+                    <div class="code-block">
+                        SELECT EmployeeID, Salary,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RANK() OVER (ORDER BY Salary DESC) AS Rank,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DENSE_RANK() OVER (ORDER BY Salary DESC) AS DenseRank,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ROW_NUMBER() OVER (ORDER BY Salary DESC) AS RowNum<br>
+                        FROM Employees;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">16. OLTP vs OLAP</h2>
+            <div class="comparison-card">
+                <div class="card-header">OLTP vs OLAP</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>OLTP</th>
+                            <th>OLAP</th>
+                        </tr>
+                        <tr>
+                            <td>Day-to-day transaction processing</td>
+                            <td>Complex analytical queries</td>
+                        </tr>
+                        <tr>
+                            <td>Short, fast transactions</td>
+                            <td>Fewer, long-running queries</td>
+                        </tr>
+                        <tr>
+                            <td>Highly normalized</td>
+                            <td>Often denormalized</td>
+                        </tr>
+                        <tr>
+                            <td>Real-time data</td>
+                            <td>Historical data analysis</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">17. Normalization vs Denormalization</h2>
+            <div class="comparison-card">
+                <div class="card-header">Normalization vs Denormalization</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>Normalization</th>
+                            <th>Denormalization</th>
+                        </tr>
+                        <tr>
+                            <td>Reduce redundancy</td>
+                            <td>Improve read performance</td>
+                        </tr>
+                        <tr>
+                            <td>Multiple related tables</td>
+                            <td>Fewer tables</td>
+                        </tr>
+                        <tr>
+                            <td>More joins</td>
+                            <td>Less joins</td>
+                        </tr>
+                        <tr>
+                            <td>Maintain consistency</td>
+                            <td>Can cause anomalies</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">18. CTE vs Subquery</h2>
+            <div class="comparison-card">
+                <div class="card-header">CTE vs Subquery</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>CTE</th>
+                            <th>Subquery</th>
+                        </tr>
+                        <tr>
+                            <td>Temporary named result set</td>
+                            <td>Query nested inside another</td>
+                        </tr>
+                        <tr>
+                            <td>Improves readability</td>
+                            <td>Can be harder to read</td>
+                        </tr>
+                        <tr>
+                            <td>Can be recursive</td>
+                            <td>Cannot be recursive</td>
+                        </tr>
+                        <tr>
+                            <td>Reusable in query</td>
+                            <td>Typically used once</td>
+                        </tr>
+                    </table>
+                    <div class="code-block">
+                        <span class="code-comment">-- CTE example</span><br>
+                        WITH EmployeeCTE AS (<br>
+                        &nbsp;&nbsp;SELECT EmployeeID, ManagerID FROM Employees<br>
+                        )<br>
+                        SELECT * FROM EmployeeCTE;<br><br>
+                        <span class="code-comment">-- Subquery example</span><br>
+                        SELECT EmployeeID FROM Employees <br>
+                        WHERE ManagerID = (SELECT ManagerID FROM Managers WHERE Name = 'John');
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">19. Index Scan vs Index Seek</h2>
+            <div class="comparison-card">
+                <div class="card-header">Index Scan vs Seek</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>Index Scan</th>
+                            <th>Index Seek</th>
+                        </tr>
+                        <tr>
+                            <td>Reads all rows in index</td>
+                            <td>Navigates to specific rows</td>
+                        </tr>
+                        <tr>
+                            <td>Slower for large tables</td>
+                            <td>Faster, efficient</td>
+                        </tr>
+                        <tr>
+                            <td>High I/O and CPU</td>
+                            <td>Low I/O and CPU</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">20. Schema vs Database</h2>
+            <div class="comparison-card">
+                <div class="card-header">Schema vs Database</div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>Schema</th>
+                            <th>Database</th>
+                        </tr>
+                        <tr>
+                            <td>Logical container for objects</td>
+                            <td>Physical container for data</td>
+                        </tr>
+                        <tr>
+                            <td>Organizes and secures objects</td>
+                            <td>Manages storage and security</td>
+                        </tr>
+                        <tr>
+                            <td>Multiple per database</td>
+                            <td>Standalone entity</td>
+                        </tr>
+                        <tr>
+                            <td>Avoids naming conflicts</td>
+                            <td>Contains multiple schemas</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="print-btn" onclick="window.print()" title="Print this page">
+        Print
+    </button>
+
+    <footer>
+        <p>SQL Interview Cheat Sheet • Perfect for Quick Revision • Updated 2025</p>
+        <p>Made with <span style="color: #e11d48;">Heart</span> for Developers</p>
+    </footer>
+
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add print functionality
+        document.querySelector('.print-btn').addEventListener('click', function() {
+            window.print();
+        });
+    </script>
+</body>
+</html>
