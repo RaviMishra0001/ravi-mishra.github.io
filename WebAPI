@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>C# Interview Mastery - Pro Edition</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4361ee;
+      --primary-light: #eef1ff;
+      --secondary: #7209b7;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --radius: 16px;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+
+    [data-theme="dark"] {
+      --primary: #809cff;
+      --primary-light: #1e293b;
+      --secondary: #c084fc;
+      --text: #f1f5f9;
+      --text-light: #94a3b8;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      transition: var(--transition);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+    }
+
+    .controls {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .btn-control {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .btn-control:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      position: relative;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 1rem 1.5rem 1rem 3rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 1rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    #searchInput:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+      font-size: 1.1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      border-color: var(--primary);
+    }
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    .card-header {
+      padding: 1.5rem 1.8rem;
+      background: var(--primary-light);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    .card-header:hover {
+      background: rgba(67, 97, 238, 0.1);
+    }
+
+    .card-header::after {
+      content: '\f078';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: var(--primary);
+      font-size: 1.1rem;
+      transition: transform 0.4s ease;
+    }
+
+    input[type="checkbox"]:checked ~ .card-header::after {
+      transform: rotate(180deg);
+      color: var(--secondary);
+    }
+
+    .card-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease, padding 0.6s ease;
+      background: var(--card-bg);
+    }
+
+    input[type="checkbox"]:checked ~ .card-body {
+      max-height: 10000px;
+      padding: 1.8rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.2rem 0;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      padding: 0.9rem 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    td {
+      color: var(--text);
+    }
+
+    .code-block {
+      background: #f1f5f9;
+      color: #1e40af;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1.2rem 0;
+      overflow-x: auto;
+      font-family: 'Consolas', monospace;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    [data-theme="dark"] .code-block {
+      background: #1e293b;
+      color: #93c5fd;
+      border-color: #334155;
+    }
+
+    .code-block::before {
+      content: 'Code';
+      position: absolute;
+      top: -10px;
+      left: 12px;
+      background: var(--primary);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .print-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(67, 97, 238, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      z-index: 1000;
+    }
+
+    .print-btn:hover {
+      transform: scale(1.15);
+      box-shadow: 0 15px 35px rgba(67, 97, 238, 0.4);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      margin-top: 4rem;
+      color: var(--text-light);
+      font-size: 0.95rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.2rem; }
+      .grid { grid-template-columns: 1fr; }
+      .controls, .print-btn { display: none; }
+      .card-header { font-size: 1.1rem; padding: 1.3rem; }
+      table { font-size: 0.85rem; }
+    }
+
+    @media print {
+      body { background: white; color: black; }
+      .card, .card-header, .card-body { background: white; border: 1px solid #ccc; }
+      input[type="checkbox"]:checked ~ .card-body { max-height: none !important; padding: 1.5rem !important; }
+      .controls, .print-btn, .search-container { display: none; }
+      .card-header::after { content: '\f077'; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Same header, controls, search -->
+
+  <div class="container">
+    <header>
+      <h1>ASP.NET Core Web API Interview</h1>
+      <p>20+ REST API Questions • Swagger • JWT • CORS</p>
+    </header>
+
+    <div class="grid">
+
+      <!-- Q1 -->
+      <div class="card">
+        <input type="checkbox" id="api1">
+        <label class="card-header" for="api1">1. What is Web API?</label>
+        <div class="card-body">
+          <p><strong>Answer:</strong> RESTful service that returns JSON/XML. Used by SPAs, mobile apps, microservices.</p>
+          <div class="code-block">
+            [ApiController]<br>
+            [Route("api/[controller]")]<br>
+            public class ProductsController : ControllerBase { }
+          </div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="card">
+        <input type="checkbox" id="api2">
+        <label class="card-header" for="api2">2. Controller vs ControllerBase?</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>Controller</th><th>ControllerBase</th></tr>
+            <tr><td>1</td><td>For MVC (Views)</td><td>For API (No Views)</td></tr>
+            <tr><td>2</td><td>Has View()</td><td>No View support</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="card">
+        <input type="checkbox" id="api3">
+        <label class="card-header" for="api3">3. What is [ApiController] attribute?</label>
+        <div class="card-body">
+          <p>Enables:</p>
+          <ul>
+            <li>Automatic model validation</li>
+            <li>Attribute routing requirement</li>
+            <li>ProblemDetails for errors</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="card">
+        <input type="checkbox" id="api4">
+        <label class="card-header" for="api4">4. HTTP Methods in Web API</label>
+        <div class="card-body">
+          <table>
+            <tr><th>Verb</th><th>Use</th></tr>
+            <tr><td>GET</td><td>Retrieve</td></tr>
+            <tr><td>POST</td><td>Create</td></tr>
+            <tr><td>PUT</td><td>Update (full)</td></tr>
+            <tr><td>PATCH</td><td>Partial update</td></tr>
+            <tr><td>DELETE</td><td>Remove</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="card">
+        <input type="checkbox" id="api5">
+        <label class="card-header" for="api5">5. What is Swagger / OpenAPI?</label>
+        <div class="card-body">
+          <p><strong>Answer:</strong> Auto-generates API documentation and UI for testing.</p>
+          <div class="code-block">
+            services.AddSwaggerGen();<br>
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API"));
+          </div>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="card">
+        <input type="checkbox" id="api6">
+        <label class="card-header" for="api6">6. What is CORS?</label>
+        <div class="card-body">
+          <p><strong>Answer:</strong> Cross-Origin Resource Sharing allows controlled access from different domains.</p>
+          <div class="code-block">
+            services.AddCors(options => {<br>
+            &nbsp;&nbsp;options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());<br>
+            });
+          </div>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="card">
+        <input type="checkbox" id="api7">
+        <label class="card-header" for="api7">7. JWT Authentication in Web API</label>
+        <div class="card-body">
+          <div class="code-block">
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)<br>
+            &nbsp;&nbsp;.AddJwtBearer(options => {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;options.TokenValidationParameters = new TokenValidationParameters { ... };<br>
+            &nbsp;&nbsp;});
+          </div>
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="card">
+        <input type="checkbox" id="api8">
+        <label class="card-header" for="api8">8. What is Action Filter in API?</label>
+        <div class="card-body">
+          <p>Run code before/after action execution (logging, auth, caching).</p>
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="card">
+        <input type="checkbox" id="api9">
+        <label class="card-header" for="api9">9. Versioning in Web API</label>
+        <div class="card-body">
+          <p>URL, Query String, Header versioning.</p>
+          <div class="code-block">
+            [Route("api/v{version:apiVersion}/[controller]")]<br>
+            [ApiVersion("1.0")]
+          </div>
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="card">
+        <input type="checkbox" id="api10">
+        <label class="card-header" for="api10">10. What is Minimal API?</label>
+        <div class="card-body">
+          <p><strong>Answer:</strong> Lightweight API without controllers (C# 10+).</p>
+          <div class="code-block">
+            app.MapGet("/weather", () => "Sunny");<br>
+            app.MapPost("/users", (User u) => Results.Created());
+          </div>
+        </div>
+      </div>
+
+      <!-- Continue up to 20+ -->
+
+    </div>
+  </div>
+</body>
+</html>
