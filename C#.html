@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C# Interview Questions & Answers</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+        }
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #eef5fc;
+            border-left: 5px solid #3498db;
+            border-radius: 6px;
+        }
+        .answer {
+            margin-top: 10px;
+            padding: 12px;
+            background: #f9f9f9;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        code {
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 0.9em;
+        }
+        .highlight {
+            background-color: #fffacd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .section {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed #aaa;
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #27ae60;
+            color: white;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-right: 8px;
+        }
+        .tip {
+            background: #e8f5e9;
+            border-left: 4px solid #27ae60;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>C# Interview Questions & Answers</h1>
+
+        <!-- Q1 to Q10 -->
+        <div class="question">
+            <h3>1. What is ASP.NET?</h3>
+            <div class="answer">
+                ASP.NET is a <strong>server-side technology</strong> used for developing dynamic websites and web applications on the internet. It also produces data-driven web applications.<br>
+                Microsoft released ASP.NET in <strong>2002</strong> to build dynamic websites and web applications using the .NET framework.
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>2. What is the ASP.NET Life Cycle, and list the types of Life Cycle?</h3>
+            <div class="answer">
+                When ASP.NET pages run, it goes through several life cycle steps, which perform a series of actions like initialization, running, restoring, and rendering.<br><br>
+                <strong>Life Cycle is classified into two categories:</strong>
+                <ul>
+                    <li><strong>Application Life Cycle:</strong> The user requests to access the application.</li>
+                    <li><strong>Page Life Cycle:</strong> The cycle has phases like initialization, restoring, execution, and page rendering.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>3. What is MVC?</h3>
+            <div class="answer">
+                MVC is a <strong>software architectural pattern</strong> that divides an application into three main parts: <strong>Model, View, and Controller</strong>.
+                <ul>
+                    <li><strong>Model:</strong> The model helps to create the application's data domain and represents the application's public properties and business logic.</li>
+                    <li><strong>View:</strong> View represents the data tables, charts, and diagrams by collecting the data from the model.</li>
+                    <li><strong>Controller:</strong> The controller helps handle user interactions and controls the flow of the application.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>4. What is CLR?</h3>
+            <div class="answer">
+                CLR is the <strong>Common Language Runtime</strong> virtual machine component of the .NET framework used to run the code. It manages and executes .NET programs and implements a Virtual Execution System (VES) internally.<br><br>
+                <strong>Services provided by CLR:</strong> Verification, Garbage collection, Security, Memory management
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>5. What is IIS? And why do you use it?</h3>
+            <div class="answer">
+                <strong>Internet Information Server (IIS)</strong> is the most popular web server used to host and provide internet-based services to ASP.NET and ASP Web applications.<br><br>
+                IIS has its process engine to handle the requests. Using an IIS computer can work as a web server and provide functionality for deploying ASP.NET web applications. It is also responsible for responding to users' requests.
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>6. List types of Application Life Cycle.</h3>
+            <div class="answer">
+                Application Life Cycle is of <strong>five types</strong>:
+                <ol>
+                    <li><strong>Application Start:</strong> Application Start is a method you execute when a user requests.</li>
+                    <li><strong>Object Creation:</strong> Object Creation contains all the information about current requests and browsing information.</li>
+                    <li><strong>HTTP Application:</strong> HTTP Application processes all subsequent requests sent to the application.</li>
+                    <li><strong>Dispose:</strong> Dispose is responsible for releasing manually unwanted resources.</li>
+                    <li><strong>Application End:</strong> Application End helps to unload the memory of an application.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>7. List the advantages of using ASP.NET</h3>
+            <div class="answer">
+                ASP.NET is a development framework used for developing web applications. It is one of the most preferred web development technologies at present.<br><br>
+                <strong>Advantages:</strong>
+                <ul>
+                    <li>Applications created using ASP.NET show better performance</li>
+                    <li>ASP.NET provides multi-development modes for the applications</li>
+                    <li>Applications created using ASP.NET can be used across the globe</li>
+                    <li>ASP.NET is language-independent.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Comparison Tables -->
+        <div class="section">
+            <h2>Core C# Concepts Comparison</h2>
+
+            <h3>Value Type vs Reference Type</h3>
+            <table>
+                <tr><th>Feature</th><th>Value Type</th><th>Reference Type</th></tr>
+                <tr><td>Storage</td><td>Stored in stack</td><td>Stored in heap</td></tr>
+                <tr><td>Data Access</td><td>Directly holds data</td><td>Holds a reference (address) to the data</td></tr>
+                <tr><td>Examples</td><td>int, float, bool, char, struct</td><td>class, interface, array, string, object</td></tr>
+                <tr><td>Modification</td><td>Changes do not affect original data</td><td>Changes affect the original object</td></tr>
+                <tr><td>Example</td><td colspan="2"><code>int a = 10; int b = a;</code></td></tr>
+            </table>
+
+            <h3>Stack vs Heap</h3>
+            <table>
+                <tr><th>Feature</th><th>Stack</th><th>Heap</th></tr>
+                <tr><td>Storage</td><td>Stores value types & method calls</td><td>Stores reference types</td></tr>
+                <tr><td>Size</td><td>Small & fixed size</td><td>Large & dynamic</td></tr>
+                <tr><td>Access Speed</td><td>Faster</td><td>Slower (due to garbage collection)</td></tr>
+                <tr><td>Lifetime</td><td>Destroyed after method execution</td><td>Exists until garbage collection</td></tr>
+            </table>
+
+            <h3>Abstract Class vs Interface</h3>
+            <table>
+                <tr><th>Feature</th><th>Abstract Class</th><th>Interface</th></tr>
+                <tr><td>Method Implementation</td><td>Can have implemented methods</td><td>Only method declarations (before C# 8)</td></tr>
+                <tr><td>Multiple Inheritance</td><td>❌ No</td><td>✅ Yes</td></tr>
+                <tr><td>Access Modifiers</td><td>✅ public, private, protected</td><td>❌ Only public</td></tr>
+            </table>
+
+            <h3>const vs readonly vs static</h3>
+            <table>
+                <tr><th>Feature</th><th>const</th><th>readonly</th><th>static</th></tr>
+                <tr><td>Value Change</td><td>❌ Cannot change</td><td>✅ In constructor</td><td>✅ Anytime</td></tr>
+                <tr><td>Initialization</td><td>At compile time</td><td>At runtime (in constructor)</td><td>Shared across all instances</td></tr>
+            </table>
+
+            <h3>ref vs out vs in</h3>
+            <table>
+                <tr><th>Feature</th><th>ref</th><th>out</th><th>in</th></tr>
+                <tr><td>Initialization Before Passing</td><td>✅ Required</td><td>❌ Not required</td><td>✅ Required</td></tr>
+                <tr><td>Modification Inside Method</td><td>✅ Allowed</td><td>✅ Required</td><td>❌ Not allowed</td></tr>
+            </table>
+
+            <h3>IEnumerable&lt;T&gt; vs IQueryable&lt;T&gt;</h3>
+            <table>
+                <tr><th>Feature</th><th>IEnumerable&lt;T&gt;</th><th>IQueryable&lt;T&gt;</th></tr>
+                <tr><td>Execution</td><td>In-memory execution</td><td>Database-side execution (lazy loading)</td></tr>
+                <tr><td>Performance</td><td>Slower for large data</td><td>Optimized for large datasets</td></tr>
+                <tr><td>Use Case</td><td>Collections like List&lt;T&gt;</td><td>LINQ to SQL queries</td></tr>
+            </table>
+
+            <h3>string vs StringBuilder</h3>
+            <table>
+                <tr><th>Feature</th><th>string</th><th>StringBuilder</th></tr>
+                <tr><td>Mutability</td><td>Immutable</td><td>Mutable</td></tr>
+                <tr><td>Performance</td><td>Slow for modifications</td><td>Faster for multiple changes</td></tr>
+            </table>
+
+            <h3>Array vs List&lt;T&gt;</h3>
+            <table>
+                <tr><th>Feature</th><th>Array</th><th>List&lt;T&gt;</th></tr>
+                <tr><td>Size</td><td>Fixed</td><td>Dynamic</td></tr>
+                <tr><td>Performance</td><td>Faster</td><td>Slightly slower</td></tr>
+            </table>
+
+            <h3>Synchronous vs Asynchronous</h3>
+            <table>
+                <tr><th>Feature</th><th>Synchronous</th><th>Asynchronous</th></tr>
+                <tr><td>Execution</td><td>Blocks the thread</td><td>Non-blocking</td></tr>
+                <tr><td>Performance</td><td>Slower if tasks take time</td><td>Faster, prevents UI freezing</td></tr>
+            </table>
+
+            <h3>throw vs throw ex</h3>
+            <table>
+                <tr><th>Feature</th><th>throw</th><th>throw ex</th></tr>
+                <tr><td>Stack Trace</td><td>Preserves original</td><td>Resets stack trace</td></tr>
+            </table>
+
+            <h3>== vs .Equals()</h3>
+            <table>
+                <tr><th>Feature</th><th>== Operator</th><th>.Equals() Method</th></tr>
+                <tr><td>Comparison</td><td>Checks reference for objects</td><td>Checks value for objects</td></tr>
+            </table>
+
+            <h3>Dispose() vs Finalize()</h3>
+            <table>
+                <tr><th>Feature</th><th>Dispose()</th><th>Finalize()</th></tr>
+                <tr><td>Called By</td><td>Manually (using block)</td><td>GC</td></tr>
+                <tr><td>Performance</td><td>Faster</td><td>Slower</td></tr>
+            </table>
+
+            <h3>var vs dynamic</h3>
+            <table>
+                <tr><th>Feature</th><th>var</th><th>dynamic</th></tr>
+                <tr><td>Type Determination</td><td>Compile-time</td><td>Runtime</td></tr>
+            </table>
+
+            <h3>Tuple vs Anonymous Type</h3>
+            <table>
+                <tr><th>Feature</th><th>Tuple</th><th>Anonymous Type</th></tr>
+                <tr><td>Mutability</td><td>✅ Mutable</td><td>❌ Immutable</td></tr>
+                <tr><td>Reusability</td><td>✅ Reusable</td><td>❌ One-time use</td></tr>
+            </table>
+
+            <h3>ViewBag vs ViewData vs TempData</h3>
+            <table>
+                <tr><th>Feature</th><th>ViewBag</th><th>ViewData</th><th>TempData</th></tr>
+                <tr><td>Type</td><td>Dynamic</td><td>Dictionary</td><td>Dictionary</td></tr>
+                <tr><td>Scope</td><td>Single request</td><td>Single request</td><td>Available for next request</td></tr>
+            </table>
+
+            <h3>Session vs Cache vs Cookies vs ViewState</h3>
+            <table>
+                <tr><th>Feature</th><th>Session</th><th>Cache</th><th>Cookies</th><th>ViewState</th></tr>
+                <tr><td>Scope</td><td>User-specific</td><td>App-wide</td><td>Client-side</td><td>Page-specific</td></tr>
+                <tr><td>Storage</td><td>Server memory</td><td>Server memory</td><td>Browser</td><td>Hidden field</td></tr>
+            </table>
+        </div>
+
+        <!-- MVC Specific -->
+        <div class="section">
+            <h2>MVC Return Types & Concepts</h2>
+
+            <div class="question">
+                <h3>Q1. What are the different return types in MVC?</h3>
+                <div class="answer">
+                    <ul>
+                        <li>Return View</li>
+                        <li>Return Partial View</li>
+                        <li>Return Redirect</li>
+                        <li>Redirect To Action</li>
+                        <li>Return Content</li>
+                        <li>Return JSON</li>
+                        <li>Return JavaScript</li>
+                        <li>Return File</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>Q2. Difference between ViewBag, ViewData, and TempData?</h3>
+                <div class="answer">
+                    <strong>ViewBag:</strong> Dynamic object to pass data from Controller to View.<br>
+                    <strong>ViewData:</strong> Dictionary object, key-value pair.<br>
+                    <strong>TempData:</strong> Dictionary object to pass data between actions, stored in session. Requires typecasting and null checking.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>Q3. What is routing & types in MVC?</h3>
+                <div class="answer">
+                    Routing processes incoming URL descriptively.<br><br>
+                    <strong>Types:</strong>
+                    <ul>
+                        <li><strong>Convention-based routing:</strong> Uses <code>MapRoute</code></li>
+                        <li><strong>Attribute-based routing:</strong> Uses <code>[Route]</code> attribute</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>Q4. What is Polymorphism?</h3>
+                <div class="answer">
+                    Polymorphism means "one name, many forms". It allows a class to have multiple implementations with the same name. Core OOP principle.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>Q5. Types of Polymorphism?</h3>
+                <div class="answer">
+                    <ul>
+                        <li><strong>Static Polymorphism</strong> (Compile-time)</li>
+                        <li><strong>Dynamic Polymorphism</strong> (Runtime)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>Q6. What is Boxing & Unboxing?</h3>
+                <div class="answer">
+                    <strong>Boxing:</strong> Value type → Reference type<br>
+                    <strong>Unboxing:</strong> Reference type → Value type
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>Q7. What is Partial class?</h3>
+                <div class="answer">
+                    Splits class definition across multiple .cs files. Compiled as one class.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>Q8. What is a sealed class?</h3>
+                <div class="answer">
+                    Cannot be inherited. Uses <code>sealed</code> modifier.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>Q9. What is an abstract class?</h3>
+                <div class="answer">
+                    Incomplete class, cannot be instantiated. Provides blueprint for derived classes.
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>Q10. What is Interface?</h3>
+                <div class="answer">
+                    Contains only declarations (methods, properties). Used for plug-and-play architecture.
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Topics -->
+        <div class="section">
+            <h2>Advanced C# Concepts</h2>
+
+            <div class="question">
+                <h3>#2. What is CLR and why is it important?</h3>
+                <div class="answer">
+                    CLR is the execution environment for .NET apps. Provides memory management, security, JIT compilation, and GC.<br><br>
+                    <strong>GC Process:</strong> Marking → Sweeping → Compacting
+                </div>
+            </div>
+
+            <div class="question">
+                <h3>#8. Interface vs Abstract Class</h3>
+                <div class="answer">
+                    <strong>Interface:</strong> Contract only, multiple inheritance<br>
+                    <strong>Abstract Class:</strong> Partial implementation, single inheritance
+                </div>
+            </div>
+
+            <div class="tip">
+                <h3>✅ Dependency Injection (DI)</h3>
+                <p>Objects receive dependencies from outside instead of creating them.</p>
+                <strong>Types:</strong> Constructor (Most Common), Method, Property<br>
+                <strong>Lifetimes:</strong> Singleton, Scoped, Transient
+            </div>
+
+            <div class="tip">
+                <h3>🔷 IEnumerable vs IQueryable</h3>
+                <strong>IEnumerable:</strong> In-memory, LINQ to Objects<br>
+                <strong>IQueryable:</strong> Database-side, LINQ to SQL
+            </div>
+
+            <div class="tip">
+                <h3>🔸 ref vs out</h3>
+                <strong>ref:</strong> Must be initialized before passing<br>
+                <strong>out:</strong> Must be assigned inside method
+            </div>
+
+            <div class="tip">
+                <h3>🔸 Middleware in ASP.NET Core</h3>
+                Components in HTTP request-response pipeline.
+            </div>
+
+            <div class="tip">
+                <h3>🔸 Entity Framework (EF)</h3>
+                ORM mapping C# classes to database.<br>
+                <strong>Approaches:</strong> Code First, Database First, Model First
+            </div>
+        </div>
+
+        <!-- C# Version History -->
+        <div class="section">
+            <h2>🧠 C# All Versions (2002–2024)</h2>
+            <table>
+                <tr><th>Version</th><th>Year</th><th>Major Features</th></tr>
+                <tr><td>C# 1.0</td><td>2002</td><td>Basic OOP, Value/Reference Types</td></tr>
+                <tr><td>C# 2.0</td><td>2005</td><td>Generics, Nullable, yield</td></tr>
+                <tr><td>C# 3.0</td><td>2007</td><td>LINQ, Lambda, Auto-properties</td></tr>
+                <tr><td>C# 4.0</td><td>2010</td><td>dynamic, Named Parameters</td></tr>
+                <tr><td>C# 5.0</td><td>2012</td><td>async/await</td></tr>
+                <tr><td>C# 6.0</td><td>2015</td><td>String interpolation, Null-conditional</td></tr>
+                <tr><td>C# 7.x</td><td>2017-18</td><td>Tuples, Pattern Matching</td></tr>
+                <tr><td>C# 8. aleg0</td><td>2019</td><td>Nullable ref types, Async streams</td></tr>
+                <tr><td>C# 9.0</td><td>2020</td><td>record, Init-only setters</td></tr>
+                <tr><td>C# 10.0</td><td>2021</td><td>Global using, File-scoped namespaces</td></tr>
+                <tr><td>C# 11.0</td><td>2022</td><td>required, Raw string literals</td></tr>
+                <tr><td>C# 12.0</td><td>2023</td><td>Primary constructors, Collection expressions</td></tr>
+                <tr><td>C# 13.0</td><td>2024</td><td>Coming with .NET 9</td></tr>
+            </table>
+        </div>
+
+        <footer style="text-align: center; margin-top: 50px; color: #777; font-size: 0.9em;">
+            &copy; 2025 C# Interview Prep | All Rights Reserved
+        </footer>
+    </div>
+</body>
+</html>
