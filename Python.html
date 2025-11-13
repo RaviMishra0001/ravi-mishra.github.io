@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Python Interview Mastery</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3776AB;
+      --primary-light: #e3f2fd;
+      --secondary: #ff6d00;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --radius: 16px;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+
+    [data-theme="dark"] {
+      --primary: #4da6ff;
+      --primary-light: #1e293b;
+      --secondary: #ff8a65;
+      --text: #f1f5f9;
+      --text-light: #94a3b8;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      transition: var(--transition);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+    }
+
+    .controls {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .btn-control {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .btn-control:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      position: relative;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 1rem 1.5rem 1rem 3rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 1rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    #searchInput:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(55, 118, 171, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-light);
+      font-size: 1.1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      border-color: var(--primary);
+    }
+
+    input[type="checkbox"] {
+      display: none;
+    }
+
+    .card-header {
+      padding: 1.5rem 1.8rem;
+      background: var(--primary-light);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    .card-header:hover {
+      background: rgba(55, 118, 171, 0.1);
+    }
+
+    .card-header::after {
+      content: '\f078';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: var(--primary);
+      font-size: 1.1rem;
+      transition: transform 0.4s ease;
+    }
+
+    input[type="checkbox"]:checked ~ .card-header::after {
+      transform: rotate(180deg);
+      color: var(--secondary);
+    }
+
+    .card-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease, padding 0.6s ease;
+      background: var(--card-bg);
+    }
+
+    input[type="checkbox"]:checked ~ .card-body {
+      max-height: 12000px;
+      padding: 1.8rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.2rem 0;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      padding: 0.9rem 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    td {
+      color: var(--text);
+    }
+
+    .code-block {
+      background: #f1f5f9;
+      color: #1e40af;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1.2rem 0;
+      overflow-x: auto;
+      font-family: 'Consolas', monospace;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    [data-theme="dark"] .code-block {
+      background: #1e293b;
+      color: #93c5fd;
+      border-color: #334155;
+    }
+
+    .code-block::before {
+      content: 'Python';
+      position: absolute;
+      top: -10px;
+      left: 12px;
+      background: var(--primary);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .print-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(55, 118, 171, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      z-index: 1000;
+    }
+
+    .print-btn:hover {
+      transform: scale(1.15);
+      box-shadow: 0 15px 35px rgba(55, 118, 171, 0.4);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      margin-top: 4rem;
+      color: var(--text-light);
+      font-size: 0.95rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.2rem; }
+      .grid { grid-template-columns: 1fr; }
+      .controls, .print-btn { display: none; }
+      .card-header { font-size: 1.1rem; padding: 1.3rem; }
+      table { font-size: 0.85rem; }
+    }
+
+    @media print {
+      body { background: white; color: black; }
+      .card, .card-header, .card-body { background: white; border: 1px solid #ccc; }
+      input[type="checkbox"]:checked ~ .card-body { max-height: none !important; padding: 1.5rem !important; }
+      .controls, .print-btn, .search-container { display: none; }
+      .card-header::after { content: '\f077'; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="controls">
+    <label class="btn-control" onclick="toggleTheme()" title="Dark Mode">
+      <i class="fas fa-moon"></i>
+    </label>
+    <a href="javascript:window.print()" class="btn-control" title="Print">
+      <i class="fas fa-print"></i>
+    </a>
+  </div>
+
+  <div class="container">
+    <header>
+      <h1>Python Interview Mastery</h1>
+      <p>20 Core Questions • Code Examples • Full Answers</p>
+    </header>
+
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search Python concepts..." oninput="filterCards(this.value)">
+      <i class="fas fa-search search-icon"></i>
+    </div>
+
+    <div class="grid">
+
+      <!-- Q1: What is Python? -->
+      <div class="card">
+        <input type="checkbox" id="q1">
+        <label class="card-header" for="q1">1. What is Python?</label>
+        <div class="card-body">
+          <p><strong>Answer:</strong> Python is a **high-level, interpreted, general-purpose programming language** known for **readability, simplicity, and versatility**.</p>
+          <div class="code-block">
+            print("Hello, Python!")
+          </div>
+          <p><strong>Use Cases:</strong> Web (Django/Flask), Data Science, AI/ML, Automation, DevOps.</p>
+        </div>
+      </div>
+
+      <!-- Q2: List vs Tuple -->
+      <div class="card">
+        <input type="checkbox" id="q2">
+        <label class="card-header" for="q2">2. List vs Tuple</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>List</th><th>Tuple</th></tr>
+            <tr><td>1</td><td>Mutable</td><td>Immutable</td></tr>
+            <tr><td>2</td><td>[]</td><td>()</td></tr>
+            <tr><td>3</td><td>Slower</td><td>Faster</td></tr>
+            <tr><td>4</td><td>Can modify</td><td>Cannot modify</td></tr>
+            <tr><td>5</td><td>More methods</td><td>Fewer methods</td></tr>
+          </table>
+          <div class="code-block">
+            lst = [1, 2, 3]; lst.append(4)<br>
+            tup = (1, 2, 3); # tup[0] = 5 → Error
+          </div>
+        </div>
+      </div>
+
+      <!-- Q3: *args vs **kwargs -->
+      <div class="card">
+        <input type="checkbox" id="q3">
+        <label class="card-header" for="q3">3. *args vs **kwargs</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>*args</th><th>**kwargs</th></tr>
+            <tr><td>1</td><td>Positional args</td><td>Keyword args</td></tr>
+            <tr><td>2</td><td>Tuple</td><td>Dictionary</td></tr>
+          </table>
+          <div class="code-block">
+            def func(*args, **kwargs):<br>
+            &nbsp;&nbsp;print(args)   # (1, 2, 3)<br>
+            &nbsp;&nbsp;print(kwargs) # {'a': 1}
+          </div>
+        </div>
+      </div>
+
+      <!-- Q4: List Comprehension -->
+      <div class="card">
+        <input type="checkbox" id="q4">
+        <label class="card-header" for="q4">4. List Comprehension</label>
+        <div class="card-body">
+          <div class="code-block">
+            squares = [x**2 for x in range(10) if x % 2 == 0]
+          </div>
+          <p><strong>Output:</strong> [0, 4, 16, 36, 64]</p>
+        </div>
+      </div>
+
+      <!-- Q5: Lambda Functions -->
+      <div class="card">
+        <input type="checkbox" id="q5">
+        <label class="card-header" for="q5">5. Lambda Functions</label>
+        <div class="card-body">
+          <div class="code-block">
+            add = lambda x, y: x + y<br>
+            print(add(5, 3))  # 8
+          </div>
+        </div>
+      </div>
+
+      <!-- Q6: Decorators -->
+      <div class="card">
+        <input type="checkbox" id="q6">
+        <label class="card-header" for="q6">6. What are Decorators?</label>
+        <div class="card-body">
+          <p><strong>Answer:</strong> Functions that modify other functions.</p>
+          <div class="code-block">
+            def timer(func):<br>
+            &nbsp;&nbsp;def wrapper(*args):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;import time; t1 = time.time()<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;result = func(*args)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;print(time.time() - t1)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;return result<br>
+            &nbsp;&nbsp;return wrapper
+          </div>
+        </div>
+      </div>
+
+      <!-- Q7: Generators -->
+      <div class="card">
+        <input type="checkbox" id="q7">
+        <label class="card-header" for="q7">7. Generators (yield)</label>
+        <div class="card-body">
+          <div class="code-block">
+            def fib():<br>
+            &nbsp;&nbsp;a, b = 0, 1<br>
+            &nbsp;&nbsp;while True:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;yield a<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;a, b = b, a + b
+          </div>
+        </div>
+      </div>
+
+      <!-- Q8: Global vs Local Scope -->
+      <div class="card">
+        <input type="checkbox" id="q8">
+        <label class="card-header" for="q8">8. Global vs Local Variables</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>Global</th><th>Local</th></tr>
+            <tr><td>1</td><td>Outside function</td><td>Inside function</td></tr>
+            <tr><td>2</td><td>Use <code>global</code> to modify</td><td>Default</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Q9: OOP: Class vs Instance -->
+      <div class="card">
+        <input type="checkbox" id="q9">
+        <label class="card-header" for="q9">9. Class vs Instance Variables</label>
+        <div class="card-body">
+          <div class="code-block">
+            class Dog:<br>
+            &nbsp;&nbsp;species = "Canis"  # Class var<br>
+            &nbsp;&nbsp;def __init__(self, name):<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;self.name = name  # Instance var
+          </div>
+        </div>
+      </div>
+
+      <!-- Q10: __init__ vs __new__ -->
+      <div class="card">
+        <input type="checkbox" id="q10">
+        <label class="card-header" for="q10">10. __init__ vs __new__</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>__new__</th><th>__init__</th></tr>
+            <tr><td>1</td><td>Creates object</td><td>Initializes object</td></tr>
+            <tr><td>2</td><td>Called first</td><td>Called after</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Q11: Inheritance -->
+      <div class="card">
+        <input type="checkbox" id="q11">
+        <label class="card-header" for="q11">11. Multiple Inheritance & super()</label>
+        <div class="card-body">
+          <div class="code-block">
+            class A: def show(self): print("A")<br>
+            class B(A): pass<br>
+            class C(B): def show(self): super().show()
+          </div>
+        </div>
+      </div>
+
+      <!-- Q12: Magic Methods -->
+      <div class="card">
+        <input type="checkbox" id="q12">
+        <label class="card-header" for="q12">12. Magic Methods (Dunder)</label>
+        <div class="card-body">
+          <div class="code-block">
+            __str__, __len__, __getitem__, __call__
+          </div>
+        </div>
+      </div>
+
+      <!-- Q13: GIL -->
+      <div class="card">
+        <input type="checkbox" id="q13">
+        <label class="card-header" for="q13">13. What is GIL?</label>
+        <div class="card-body">
+          <p><strong>Answer:</strong> **Global Interpreter Lock** — allows only one thread to execute Python bytecode at a time.</p>
+          <p><strong>Impact:</strong> Limits true multithreading in CPU-bound tasks.</p>
+        </div>
+      </div>
+
+      <!-- Q14: Multiprocessing vs Threading -->
+      <div class="card">
+        <input type="checkbox" id="q14">
+        <label class="card-header" for="q14">14. Multiprocessing vs Threading</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>Threading</th><th>Multiprocessing</th></tr>
+            <tr><td>1</td><td>Shared memory</td><td>Separate memory</td></tr>
+            <tr><td>2</td><td>GIL issue</td><td>No GIL</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Q15: Virtual Environment -->
+      <div class="card">
+        <input type="checkbox" id="q15">
+        <label class="card-header" for="q15">15. Virtual Environment</label>
+        <div class="card-body">
+          <div class="code-block">
+            python -m venv myenv<br>
+            source myenv/bin/activate  # Linux/Mac<br>
+            myenv\Scripts\activate     # Windows
+          </div>
+        </div>
+      </div>
+
+      <!-- Q16: Pip & Requirements.txt -->
+      <div class="card">
+        <input type="checkbox" id="q16">
+        <label class="card-header" for="q16">16. Pip Freeze</label>
+        <div class="card-body">
+          <div class="code-block">
+            pip freeze > requirements.txt<br>
+            pip install -r requirements.txt
+          </div>
+        </div>
+      </div>
+
+      <!-- Q17: Exception Handling -->
+      <div class="card">
+        <input type="checkbox" id="q17">
+        <label class="card-header" for="q17">17. Try, Except, Finally</label>
+        <div class="card-body">
+          <div class="code-block">
+            try:<br>
+            &nbsp;&nbsp;x = 1/0<br>
+            except ZeroDivisionError:<br>
+            &nbsp;&nbsp;print("Error")<br>
+            finally:<br>
+            &nbsp;&nbsp;print("Cleanup")
+          </div>
+        </div>
+      </div>
+
+      <!-- Q18: Context Managers (with) -->
+      <div class="card">
+        <input type="checkbox" id="q18">
+        <label class="card-header" for="q18">18. Context Managers</label>
+        <div class="card-body">
+          <div class="code-block">
+            with open('file.txt', 'r') as f:<br>
+            &nbsp;&nbsp;data = f.read()
+          </div>
+        </div>
+      </div>
+
+      <!-- Q19: Map, Filter, Reduce -->
+      <div class="card">
+        <input type="checkbox" id="q19">
+        <label class="card-header" for="q19">19. map(), filter(), reduce()</label>
+        <div class="card-body">
+          <div class="code-block">
+            from functools import reduce<br>
+            squares = list(map(lambda x: x**2, [1,2,3]))<br>
+            evens = list(filter(lambda x: x%2==0, [1,2,3,4]))<br>
+            total = reduce(lambda x,y: x+y, [1,2,3,4])
+          </div>
+        </div>
+      </div>
+
+      <!-- Q20: __name__ == "__main__" -->
+      <div class="card">
+        <input type="checkbox" id="q20">
+        <label class="card-header" for="q20">20. if __name__ == "__main__":</label>
+        <div class="card-body">
+          <p><strong>Answer:</strong> Runs only when file is executed directly, not when imported.</p>
+          <div class="code-block">
+            if __name__ == "__main__":<br>
+            &nbsp;&nbsp;print("Running directly")
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <a href="javascript:window.print()" class="print-btn">
+    <i class="fab fa-python"></i>
+  </a>
+
+  <footer>
+    <p>© 2025 Python Interview Pro • 20 Q&A • Ready to Crack</p>
+  </footer>
+
+  <script>
+    function filterCards(term) {
+      term = term.toLowerCase();
+      document.querySelectorAll('.card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(term) ? 'block' : 'none';
+      });
+    }
+
+    function toggleTheme() {
+      const body = document.body;
+      const current = body.getAttribute('data-theme');
+      body.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+      localStorage.setItem('theme', current === 'dark' ? 'light' : 'dark');
+    }
+
+    window.addEventListener('load', () => {
+      const saved = localStorage.getItem('theme');
+      if (saved) document.body.setAttribute('data-theme', saved);
+    });
+  </script>
+
+</body>
+</html>
