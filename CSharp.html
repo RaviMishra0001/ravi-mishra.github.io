@@ -3,69 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>C# Interview Mastery - Cyber Vault</title>
+  <title>C# Interview Mastery - Pro Edition</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #00ffff;
-      --secondary: #ff00ff;
-      --glass: rgba(20, 25, 40, 0.88);
-      --glass-border: rgba(0, 255, 255, 0.5);
-      --text: #e0f7fa;
-      --radius: 22px;
-      --shadow: 0 12px 45px rgba(0, 255, 255, 0.3);
-      --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --primary: #4361ee;
+      --primary-light: #eef1ff;
+      --secondary: #7209b7;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --radius: 16px;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    [data-theme="dark"] {
+      --primary: #809cff;
+      --primary-light: #1e293b;
+      --secondary: #c084fc;
+      --text: #f1f5f9;
+      --text-light: #94a3b8;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
-      font-family: 'Roboto Mono', monospace;
-      background: #0a0e17;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
       color: var(--text);
-      min-height: 100vh;
-      padding: 20px;
       line-height: 1.7;
-      position: relative;
-      overflow-x: hidden;
+      transition: var(--transition);
     }
-
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(45deg, #1a0033, #000033, #001a33, #003300);
-      background-size: 400% 400%;
-      animation: cyberFlow 20s ease infinite;
-      z-index: -2;
-      opacity: 0.9;
-    }
-
-    @keyframes cyberFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(0,255,255,0.03) 50px, rgba(0,255,255,0.03) 52px),
-                  repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255,0,255,0.03) 50px, rgba(255,0,255,0.03) 52px);
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    #darkMode { display: none; }
-    #darkMode:checked ~ .container { filter: brightness(0.7) contrast(1.3); }
 
     .container {
-      max-width: 1500px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 2rem;
-      transition: var(--transition);
     }
 
     header {
@@ -74,139 +58,123 @@
     }
 
     header h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 5rem;
+      font-size: 3rem;
       font-weight: 700;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 25px rgba(0,255,255,0.6), 0 0 50px rgba(255,0,255,0.4);
-      animation: neonPulse 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes neonPulse {
-      from { text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff; }
-      to { text-shadow: 0 0 30px #00ffff, 0 0 60px #ff00ff, 0 0 80px #ff00ff; }
+      color: var(--primary);
+      margin-bottom: 0.5rem;
     }
 
     header p {
-      font-size: 1.4rem;
-      color: #88ffff;
-      margin-top: 1rem;
-      font-weight: 300;
+      font-size: 1.1rem;
+      color: var(--text-light);
     }
 
     .controls {
       position: fixed;
-      top: 30px;
-      right: 30px;
+      top: 20px;
+      right: 20px;
       display: flex;
-      gap: 18px;
+      gap: 12px;
       z-index: 1000;
     }
 
-    .control-label {
-      width: 60px;
-      height: 60px;
+    .btn-control {
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      background: var(--glass);
-      border: 2px solid var(--glass-border);
-      color: var(--primary);
-      font-size: 1.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 1.2rem;
       cursor: pointer;
-      backdrop-filter: blur(14px);
-      box-shadow: var(--shadow), inset 0 0 20px rgba(0,255,255,0.2);
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: var(--transition);
-    }
-
-    .control-label:hover {
-      transform: translateY(-10px) scale(1.2);
-      box-shadow: 0 0 40px rgba(0,255,255,0.8), 0 0 60px rgba(255,0,255,0.5);
-      border-color: var(--primary);
-      background: rgba(0,255,255,0.2);
-    }
-
-    .search-container {
-      position: relative;
-      max-width: 700px;
-      margin: 0 auto 3.5rem;
-    }
-
-    #searchInput {
-      width: 100%;
-      padding: 1.3rem 2.2rem;
-      border-radius: 50px;
-      border: 2px solid var(--glass-border);
-      background: var(--glass);
-      backdrop-filter: blur(16px);
-      color: var(--text);
-      font-size: 1.15rem;
       box-shadow: var(--shadow);
       transition: var(--transition);
     }
 
-    #searchInput::placeholder { color: rgba(0,255,255,0.7); }
+    .btn-control:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      position: relative;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 1rem 1.5rem 1rem 3rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 1rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
     #searchInput:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 5px rgba(0,255,255,0.4);
-      transform: scale(1.03);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
     }
 
     .search-icon {
       position: absolute;
-      right: 28px;
+      left: 1rem;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--primary);
-      font-size: 1.5rem;
-      pointer-events: none;
-      text-shadow: 0 0 12px var(--primary);
+      color: var(--text-light);
+      font-size: 1.1rem;
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-      gap: 2.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 1.8rem;
     }
 
     .card {
-      background: var(--glass);
+      background: var(--card-bg);
       border-radius: var(--radius);
       overflow: hidden;
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--glass-border);
+      border: 1px solid var(--border);
       box-shadow: var(--shadow);
       transition: var(--transition);
     }
 
     .card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 30px 60px rgba(0,255,255,0.4), 0 0 40px rgba(255,0,255,0.3);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
       border-color: var(--primary);
     }
 
-    input[type="checkbox"] { display: none; }
+    input[type="checkbox"] {
+      display: none;
+    }
 
     .card-header {
-      padding: 1.8rem 2.2rem;
-      background: linear-gradient(135deg, rgba(0,255,255,0.2), rgba(255,0,255,0.2));
+      padding: 1.5rem 1.8rem;
+      background: var(--primary-light);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-weight: 700;
-      font-size: 1.4rem;
-      color: var(--text);
-      position: relative;
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--primary);
       transition: var(--transition);
     }
 
     .card-header:hover {
-      background: linear-gradient(135deg, rgba(0,255,255,0.3), rgba(255,0,255,0.3));
+      background: rgba(67, 97, 238, 0.1);
     }
 
     .card-header::after {
@@ -214,9 +182,8 @@
       font-family: 'Font Awesome 6 Free';
       font-weight: 900;
       color: var(--primary);
-      font-size: 1.5rem;
-      transition: transform 0.5s ease;
-      text-shadow: 0 0 12px var(--primary);
+      font-size: 1.1rem;
+      transition: transform 0.4s ease;
     }
 
     input[type="checkbox"]:checked ~ .card-header::after {
@@ -227,73 +194,83 @@
     .card-body {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.8s ease, padding 0.8s ease;
-      background: rgba(10, 14, 23, 0.9);
+      transition: max-height 0.6s ease, padding 0.6s ease;
+      background: var(--card-bg);
     }
 
     input[type="checkbox"]:checked ~ .card-body {
-      max-height: 8000px;
-      padding: 2.2rem;
+      max-height: 10000px;
+      padding: 1.8rem;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 1.5rem 0;
-      font-size: 1rem;
+      margin: 1.2rem 0;
+      font-size: 0.95rem;
     }
 
     th, td {
-      padding: 1.1rem;
+      padding: 0.9rem 0.8rem;
       text-align: left;
-      border-bottom: 1px solid rgba(0,255,255,0.2);
+      border-bottom: 1px solid var(--border);
     }
 
     th {
-      background: rgba(0,255,255,0.15);
+      background: var(--primary-light);
       color: var(--primary);
       font-weight: 600;
-      text-shadow: 0 0 6px var(--primary);
+      font-size: 0.9rem;
     }
 
-    td { color: #c0fffc; }
+    td {
+      color: var(--text);
+    }
 
     .code-block {
-      background: rgba(0,0,0,0.7);
-      color: #a7ffeb;
-      padding: 1.6rem;
-      border-radius: 16px;
-      margin: 1.5rem 0;
+      background: #f1f5f9;
+      color: #1e40af;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1.2rem 0;
       overflow-x: auto;
-      font-family: 'Roboto Mono', monospace;
-      font-size: 0.95rem;
-      border: 1px solid rgba(0,255,255,0.4);
+      font-family: 'Consolas', monospace;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
       position: relative;
-      box-shadow: inset 0 0 20px rgba(0,255,255,0.15);
+    }
+
+    [data-theme="dark"] .code-block {
+      background: #1e293b;
+      color: #93c5fd;
+      border-color: #334155;
     }
 
     .code-block::before {
-      content: '';
+      content: 'Code';
       position: absolute;
-      top: 0; left: 0; right: 0; height: 5px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      border-radius: 16px 16px 0 0;
+      top: -10px;
+      left: 12px;
+      background: var(--primary);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
     }
 
     .print-btn {
       position: fixed;
-      bottom: 40px;
-      right: 40px;
-      width: 70px;
-      height: 70px;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      background: var(--glass);
-      border: 2px solid var(--glass-border);
-      color: var(--primary);
-      font-size: 2rem;
+      background: var(--primary);
+      color: white;
+      font-size: 1.5rem;
       cursor: pointer;
-      backdrop-filter: blur(14px);
-      box-shadow: var(--shadow);
+      box-shadow: 0 10px 25px rgba(67, 97, 238, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -302,76 +279,61 @@
     }
 
     .print-btn:hover {
-      transform: scale(1.3) rotate(360deg);
-      box-shadow: 0 0 50px rgba(0,255,255,0.9);
-      background: rgba(0,255,255,0.25);
-    }
-
-    .progress-container {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 7px;
-      background: rgba(0,0,0,0.4);
-      z-index: 1001;
-    }
-
-    .progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      width: 0%;
-      transition: width 0.3s ease;
-      box-shadow: 0 0 20px rgba(0,255,255,0.9);
+      transform: scale(1.15);
+      box-shadow: 0 15px 35px rgba(67, 97, 238, 0.4);
     }
 
     footer {
       text-align: center;
-      padding: 4rem;
-      margin-top: 6rem;
-      color: rgba(0,255,255,0.8);
-      font-size: 1.1rem;
-      text-shadow: 0 0 12px rgba(0,255,255,0.4);
+      padding: 3rem 1rem;
+      margin-top: 4rem;
+      color: var(--text-light);
+      font-size: 0.95rem;
+      border-top: 1px solid var(--border);
     }
 
     @media (max-width: 768px) {
-      header h1 { font-size: 3rem; }
+      header h1 { font-size: 2.2rem; }
       .grid { grid-template-columns: 1fr; }
       .controls, .print-btn { display: none; }
-      .card-header { font-size: 1.2rem; padding: 1. 4rem; }
-      table { font-size: 0.9rem; }
+      .card-header { font-size: 1.1rem; padding: 1.3rem; }
+      table { font-size: 0.85rem; }
     }
 
     @media print {
-      body, body::before, body::after { background: white !important; color: black !important; }
-      .card, .card-header, .card-body { background: white !important; border: 1px solid #ccc; }
+      body { background: white; color: black; }
+      .card, .card-header, .card-body { background: white; border: 1px solid #ccc; }
       input[type="checkbox"]:checked ~ .card-body { max-height: none !important; padding: 1.5rem !important; }
-      .controls, .progress-container, .print-btn, .search-container { display: none; }
+      .controls, .print-btn, .search-container { display: none; }
+      .card-header::after { content: '\f077'; }
     }
   </style>
 </head>
 <body>
 
-  <input type="checkbox" id="darkMode">
-  <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
-
   <div class="controls">
-    <label for="darkMode" class="control-label">Moon</label>
-    <a href="javascript:window.print()" class="control-label">Print</a>
+    <label class="btn-control" onclick="toggleTheme()" title="Dark Mode">
+      <i class="fas fa-moon"></i>
+    </label>
+    <a href="javascript:window.print()" class="btn-control" title="Print">
+      <i class="fas fa-print"></i>
+    </a>
   </div>
 
   <div class="container">
     <header>
-      <h1>C# INTERVIEW VAULT</h1>
-      <p>10 Elite Q&A • 5 Differences + Example • Click to Expand</p>
+      <h1>C# Interview Mastery</h1>
+      <p>10 Core Concepts • 5 Key Differences • Real Code Examples</p>
     </header>
 
     <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Search C# mastery..." oninput="filterCards(this.value)">
+      <input type="text" id="searchInput" placeholder="Search C# concepts..." oninput="filterCards(this.value)">
       <i class="fas fa-search search-icon"></i>
     </div>
 
     <div class="grid">
 
-      <!-- Q1 -->
+      <!-- Q1: Abstract Class vs Interface -->
       <div class="card">
         <input type="checkbox" id="q1">
         <label class="card-header" for="q1">1. Abstract Class vs Interface</label>
@@ -393,7 +355,7 @@
         </div>
       </div>
 
-      <!-- Q2 -->
+      <!-- Q2: Delegate vs Event -->
       <div class="card">
         <input type="checkbox" id="q2">
         <label class="card-header" for="q2">2. Delegate vs Event</label>
@@ -409,17 +371,15 @@
           <div class="code-block">
             public delegate void Notify();<br>
             public event Notify OnNotify;<br><br>
-            // Delegate<br>
             Notify handler = () => Console.WriteLine("Called");<br>
             handler(); // Direct call<br><br>
-            // Event<br>
             OnNotify += () => Console.WriteLine("Event");<br>
-            // OnNotify(); // Error: only class can raise
+            // OnNotify(); // Error
           </div>
         </div>
       </div>
 
-      <!-- Q3 -->
+      <!-- Q3: Static vs Singleton -->
       <div class="card">
         <input type="checkbox" id="q3">
         <label class="card-header" for="q3">3. Static vs Singleton</label>
@@ -444,7 +404,7 @@
         </div>
       </div>
 
-      <!-- Q4 -->
+      <!-- Q4: ref vs out -->
       <div class="card">
         <input type="checkbox" id="q4">
         <label class="card-header" for="q4">4. ref vs out</label>
@@ -466,7 +426,7 @@
         </div>
       </div>
 
-      <!-- Q5 -->
+      <!-- Q5: string vs StringBuilder -->
       <div class="card">
         <input type="checkbox" id="q5">
         <label class="card-header" for="q5">5. string vs StringBuilder</label>
@@ -487,7 +447,7 @@
         </div>
       </div>
 
-      <!-- Q6 -->
+      <!-- Q6: Boxing vs Unboxing -->
       <div class="card">
         <input type="checkbox" id="q6">
         <label class="card-header" for="q6">6. Boxing vs Unboxing</label>
@@ -508,7 +468,7 @@
         </div>
       </div>
 
-      <!-- Q7 -->
+      <!-- Q7: IEnumerable vs IQueryable -->
       <div class="card">
         <input type="checkbox" id="q7">
         <label class="card-header" for="q7">7. IEnumerable vs IQueryable</label>
@@ -529,7 +489,7 @@
         </div>
       </div>
 
-      <!-- Q8 -->
+      <!-- Q8: Thread vs Task -->
       <div class="card">
         <input type="checkbox" id="q8">
         <label class="card-header" for="q8">8. Thread vs Task</label>
@@ -549,7 +509,7 @@
         </div>
       </div>
 
-      <!-- Q9 -->
+      <!-- Q9: const vs readonly -->
       <div class="card">
         <input type="checkbox" id="q9">
         <label class="card-header" for="q9">9. const vs readonly</label>
@@ -570,7 +530,7 @@
         </div>
       </div>
 
-      <!-- Q10 -->
+      <!-- Q10: == vs .Equals() -->
       <div class="card">
         <input type="checkbox" id="q10">
         <label class="card-header" for="q10">10. == vs .Equals()</label>
@@ -581,7 +541,7 @@
             <tr><td>2</td><td>Can overload</td><td>Can override</td></tr>
             <tr><td>3</td><td>Fast</td><td>Slightly slower</td></tr>
             <tr><td>4</td><td>String: content</td><td>String: content</td></tr>
-            <tr><td>5</td><td>Null safe with null</td><td>Risk of NullRef</td></tr>
+            <tr><td>5</td><td>Null safe</td><td>Risk of NullRef</td></tr>
           </table>
           <div class="code-block">
             string a = "hi", b = "hi";<br>
@@ -597,11 +557,12 @@
     </div>
   </div>
 
-  <a href="javascript:window.print()" class="print-btn">Print</a>
+  <a href="javascript:window.print()" class="print-btn">
+    <i class="fas fa-print"></i>
+  </a>
 
   <footer>
-    <p>© 2025 C# Cyber Vault • <strong>10 Elite Q&A</strong> • 5 Differences + Example</p>
-    <p>Made with <span style="color:var(--primary);">Neon</span> & <span style="color:var(--secondary);">Precision</span></p>
+    <p>© 2025 C# Interview Mastery • 10 Complete Q&A • Professional UI</p>
   </footer>
 
   <script>
@@ -613,11 +574,17 @@
       });
     }
 
-    window.addEventListener('scroll', () => {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      document.getElementById('progressBar').style.width = scrolled + '%';
+    function toggleTheme() {
+      const body = document.body;
+      const current = body.getAttribute('data-theme');
+      body.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+      localStorage.setItem('theme', current === 'dark' ? 'light' : 'dark');
+    }
+
+    // Load theme
+    window.addEventListener('load', () => {
+      const saved = localStorage.getItem('theme');
+      if (saved) document.body.setAttribute('data-theme', saved);
     });
   </script>
 </body>
