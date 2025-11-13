@@ -555,6 +555,294 @@
       </div>
 
     </div>
+
+    <div class="grid">
+
+      <!-- Q1: What is C#? -->
+      <div class="card">
+        <input type="checkbox" id="q1">
+        <label class="card-header" for="q1">1. What is C#?</label>
+        <div class="card-body">
+          <p><strong>Answer:</strong> C# is a modern, object-oriented programming language developed by Microsoft. It runs on the .NET Framework and is designed to be simple, type-safe, and scalable. It combines the power of C/C++ with the ease of Java.</p>
+          <div class="code-block">
+            // C# is used to build Windows apps, Web APIs, Games (Unity), etc.<br>
+            Console.WriteLine("Hello, C#!");
+          </div>
+          <p><strong>Use Case:</strong> Enterprise apps, desktop, web, mobile (Xamarin), cloud (Azure).</p>
+        </div>
+      </div>
+
+      <!-- Q2: Visual Studio -->
+      <div class="card">
+        <input type="checkbox" id="q2">
+        <label class="card-header" for="q2">2. What is Visual Studio?</label>
+        <div class="card-body">
+          <p><strong>Answer:</strong> Visual Studio is Microsoft's IDE for developing, debugging, and deploying .NET applications. It supports C#, VB.NET, F#, and more.</p>
+          <p><strong>Features:</strong> Code Editor, Debugger, IntelliSense, Designer, Compiler, Git Integration.</p>
+          <div class="code-block">
+            // Write → Build → Run → Debug → Publish — all in one tool
+          </div>
+        </div>
+      </div>
+
+      <!-- Q3: CLR -->
+      <div class="card">
+        <input type="checkbox" id="q3">
+        <label class="card-header" for="q3">3. What is Common Language Runtime (CLR)?</label>
+        <div class="card-body">
+          <p><strong>Answer:</strong> CLR is the execution engine of .NET. It manages code execution, memory, security, and garbage collection.</p>
+          <p><strong>Key Roles:</strong> JIT Compilation, Exception Handling, Type Safety, GC.</p>
+          <div class="code-block">
+            C# → CIL (MSIL) → JIT → Native Machine Code
+          </div>
+        </div>
+      </div>
+
+      <!-- Q4: Data Types in C# -->
+      <div class="card">
+        <input type="checkbox" id="q4">
+        <label class="card-header" for="q4">4. Data Types in C# (Value vs Reference vs Pointer)</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>Value Type</th><th>Reference Type</th><th>Pointer Type</th></tr>
+            <tr><td>1</td><td>Stores value</td><td>Stores address</td><td>Stores memory address</td></tr>
+            <tr><td>2</td><td>Stack</td><td>Heap</td><td>Unsafe context</td></tr>
+            <tr><td>3</td><td>Copy on assign</td><td>Reference copy</td><td>Direct memory access</td></tr>
+            <tr><td>4</td><td>int, bool, struct</td><td>class, string, array</td><td>int*, char*</td></tr>
+            <tr><td>5</td><td>Fast, independent</td><td>Shared object</td><td>Rare, unsafe</td></tr>
+          </table>
+          <div class="code-block">
+            int a = 10; int b = a; // Value copy<br>
+            string s1 = "Hi"; string s2 = s1; // Reference copy<br>
+            unsafe { int* p = &a; } // Pointer
+          </div>
+        </div>
+      </div>
+
+      <!-- Q5: Operators -->
+      <div class="card">
+        <input type="checkbox" id="q5">
+        <label class="card-header" for="q5">5. Types of Operators in C#</label>
+        <div class="card-body">
+          <p><strong>Categories:</strong></p>
+          <ul>
+            <li><strong>Arithmetic:</strong> +, -, *, /, %</li>
+            <li><strong>Relational:</strong> ==, !=, <, >, <=, >=</li>
+            <li><strong>Logical:</strong> &&, ||, !</li>
+            <li><strong>Assignment:</strong> =, +=, -=, *=</li>
+            <li><strong>Increment/Decrement:</strong> ++, --</li>
+            <li><strong>Bitwise:</strong> &, |, ^, ~</li>
+            <li><strong>Ternary:</strong> condition ? true : false</li>
+            <li><strong>Null Coalescing:</strong> ??</li>
+          </ul>
+          <div class="code-block">
+            int x = 10;<br>
+            bool result = (x > 5) ? true : false;<br>
+            string name = null;<br>
+            string output = name ?? "Guest";
+          </div>
+        </div>
+      </div>
+
+      <!-- Q6: Constructors -->
+      <div class="card">
+        <input type="checkbox" id="q6">
+        <label class="card-header" for="q6">6. Types of Constructors in C#</label>
+        <div class="card-body">
+          <table>
+            <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+            <tr><td>Default</td><td>No params</td><td><code>public Person() {}</code></td></tr>
+            <tr><td>Parameterized</td><td>Takes input</td><td><code>public Person(string n)</code></td></tr>
+            <tr><td>Copy</td><td>Copies object</td><td><code>public Person(Person p)</code></td></tr>
+            <tr><td>Static</td><td>Runs once</td><td><code>static Person() {}</code></td></tr>
+            <tr><td>Private</td><td>Singleton</td><td><code>private Person() {}</code></td></tr>
+          </table>
+          <div class="code-block">
+            class Person {<br>
+            &nbsp;&nbsp;public Person() {} // Default<br>
+            &nbsp;&nbsp;public Person(string n) {} // Param<br>
+            &nbsp;&nbsp;static Person() { Console.WriteLine("Static"); }<br>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Q7: Destructor -->
+      <div class="card">
+        <input type="checkbox" id="q7">
+        <label class="card-header" for="q7">7. What is Destructor in C#?</label>
+        <div class="card-body">
+          <p><strong>Answer:</strong> Destructor (~ClassName) is called by GC to clean up unmanaged resources. Implicitly invoked.</p>
+          <div class="code-block">
+            class FileHandler {<br>
+            &nbsp;&nbsp;~FileHandler() {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine("File closed");<br>
+            &nbsp;&nbsp;}<br>
+            }
+          </div>
+          <p><strong>Note:</strong> Use <code>IDisposable</code> + <code>Dispose()</code> for deterministic cleanup.</p>
+        </div>
+      </div>
+
+      <!-- Q8: Garbage Collection -->
+      <div class="card">
+        <input type="checkbox" id="q8">
+        <label class="card-header" for="q8">8. Garbage Collection in C#</label>
+        <div class="card-body">
+          <table>
+            <tr><th>Generation</th><th>Purpose</th></tr>
+            <tr><td>Gen 0</td><td>Short-lived (temp vars)</td></tr>
+            <tr><td>Gen 1</td><td>Medium-lived</td></tr>
+            <tr><td>Gen 2</td><td>Long-lived (static, cache)</td></tr>
+          </table>
+          <div class="code-block">
+            GC.Collect(); // Force GC (avoid in prod)<br>
+            GC.SuppressFinalize(this); // After Dispose()
+          </div>
+          <p><strong>Dispose vs Finalize:</strong> Dispose = manual, Finalize = automatic by GC.</p>
+        </div>
+      </div>
+
+      <!-- Q9: Four Pillars of OOP -->
+      <div class="card">
+        <input type="checkbox" id="q9">
+        <label class="card-header" for="q9">9. Four Pillars of OOP</label>
+        <div class="card-body">
+          <table>
+            <tr><th>Pillar</th><th>Description</th></tr>
+            <tr><td>Encapsulation</td><td>Data + Methods in class, hide internals</td></tr>
+            <tr><td>Abstraction</td><td>Show essential, hide complex</td></tr>
+            <tr><td>Inheritance</td><td>Reuse code via parent-child</td></tr>
+            <tr><td>Polymorphism</td><td>One name, many forms</td></tr>
+          </table>
+          <div class="code-block">
+            // Polymorphism Example<br>
+            Animal a = new Dog(); a.Speak(); // "Woof"
+          </div>
+        </div>
+      </div>
+
+      <!-- Q10: Call by Value vs Reference -->
+      <div class="card">
+        <input type="checkbox" id="q10">
+        <label class="card-header" for="q10">10. Call by Value vs Call by Reference</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>Call by Value</th><th>Call by Reference</th></tr>
+            <tr><td>1</td><td>Copy passed</td><td>Address passed</td></tr>
+            <tr><td>2</td><td>No change to original</td><td>Original modified</td></tr>
+            <tr><td>3</td><td>Default</td><td>Use <code>ref</code> / <code>out</code></td></tr>
+          </table>
+          <div class="code-block">
+            void Inc(int x) { x++; } // Value<br>
+            void IncRef(ref int x) { x++; } // Reference
+          </div>
+        </div>
+      </div>
+
+      <!-- Q11: Value Type vs Reference Type -->
+      <div class="card">
+        <input type="checkbox" id="q11">
+        <label class="card-header" for="q11">11. Value Type vs Reference Type</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>Value Type</th><th>Reference Type</th></tr>
+            <tr><td>1</td><td>Stack</td><td>Heap</td></tr>
+            <tr><td>2</td><td>Copy on assign</td><td>Reference copy</td></tr>
+            <tr><td>3</td><td>struct, int</td><td>class, string</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Q12: ref vs out -->
+      <div class="card">
+        <input type="checkbox" id="q12">
+        <label class="card-header" for="q12">12. ref vs out Keyword</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>ref</th><th>out</th></tr>
+            <tr><td>1</td><td>Must initialize</td><td>No init needed</td></tr>
+            <tr><td>2</td><td>Can read</td><td>Cannot read before assign</td></tr>
+            <tr><td>3</td><td>Optional assign</td><td>Must assign</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Q13: Abstract Class vs Interface -->
+      <div class="card">
+        <input type="checkbox" id="q13">
+        <label class="card-header" for="q13">13. Abstract Class vs Interface</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>Abstract Class</th><th>Interface</th></tr>
+            <tr><td>1</td><td>Can have fields</td><td>No fields</td></tr>
+            <tr><td>2</td><td>Single inheritance</td><td>Multiple</td></tr>
+            <tr><td>3</td><td>Constructors</td><td>No constructors</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Q14: Method Overloading vs Overriding -->
+      <div class="card">
+        <input type="checkbox" id="q14">
+        <label class="card-header" for="q14">14. Overloading vs Overriding</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>Overloading</th><th>Overriding</th></tr>
+            <tr><td>1</td><td>Same class</td><td>Parent-child</td></tr>
+            <tr><td>2</td><td>Different params</td><td>Same signature</td></tr>
+            <tr><td>3</td><td>Compile-time</td><td>Runtime</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Q15: Stack vs Heap -->
+      <div class="card">
+        <input type="checkbox" id="q15">
+        <label class="card-header" for="q15">15. Stack vs Heap Memory</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>Stack</th><th>Heap</th></tr>
+            <tr><td>1</td><td>Value types</td><td>Reference types</td></tr>
+            <tr><td>2</td><td>Fast, auto-clean</td><td>GC managed</td></tr>
+            <tr><td>3</td><td>Limited size</td><td>Large, dynamic</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Q16: Managed vs Unmanaged -->
+      <div class="card">
+        <input type="checkbox" id="q16">
+        <label class="card-header" for="q16">16. Managed vs Unmanaged Code</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>Managed</th><th>Unmanaged</th></tr>
+            <tr><td>1</td><td>CLR control</td><td>Direct OS</td></tr>
+            <tr><td>2</td><td>GC</td><td>Manual free</td></tr>
+            <tr><td>3</td><td>C#</td><td>C++, COM</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Q17: Dispose vs Finalize -->
+      <div class="card">
+        <input type="checkbox" id="q17">
+        <label class="card-header" for="q17">17. Dispose() vs Finalize()</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>Dispose</th><th>Finalize</th></tr>
+            <tr><td>1</td><td>Manual call</td><td>GC auto</td></tr>
+            <tr><td>2</td><td>IDisposable</td><td>~Class()</td></tr>
+            <tr><td>3</td><td>Deterministic</td><td>Non-deterministic</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Add more cards for remaining topics (Sealed, Static, Boxing, etc.) -->
+
+    </div>
+
+    
   </div>
 
   <a href="javascript:window.print()" class="print-btn">
