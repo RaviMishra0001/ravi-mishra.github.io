@@ -1,488 +1,624 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C# Interview Questions & Answers</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f7fa;
-            color: #333;
-        }
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        h1, h2, h3, h4 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 8px;
-        }
-        h1 {
-            text-align: center;
-            font-size: 2.2em;
-            margin-bottom: 30px;
-        }
-        .question {
-            margin-bottom: 25px;
-            padding: 15px;
-            background: #eef5fc;
-            border-left: 5px solid #3498db;
-            border-radius: 6px;
-        }
-        .answer {
-            margin-top: 10px;
-            padding: 12px;
-            background: #f9f9f9;
-            border-radius: 6px;
-            border: 1px solid #ddd;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 0.95em;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #3498db;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        code {
-            background: #eee;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: Consolas, monospace;
-        }
-        pre {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 6px;
-            overflow-x: auto;
-            font-size: 0.9em;
-        }
-        .highlight {
-            background-color: #fffacd;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-        .section {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px dashed #aaa;
-        }
-        ul, ol {
-            padding-left: 25px;
-        }
-        li {
-            margin-bottom: 8px;
-        }
-        .badge {
-            display: inline-block;
-            padding: 4px 8px;
-            background: #27ae60;
-            color: white;
-            border-radius: 12px;
-            font-size: 0.8em;
-            margin-right: 8px;
-        }
-        .tip {
-            background: #e8f5e9;
-            border-left: 4px solid #27ae60;
-            padding: 10px;
-            margin: 15px 0;
-            border-radius: 0 6px 6px 0;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>C# Interview Mastery - Cyber Vault</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00ffff;
+      --secondary: #ff00ff;
+      --glass: rgba(20, 25, 40, 0.88);
+      --glass-border: rgba(0, 255, 255, 0.5);
+      --text: #e0f7fa;
+      --radius: 22px;
+      --shadow: 0 12px 45px rgba(0, 255, 255, 0.3);
+      --transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background: #0a0e17;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 20px;
+      line-height: 1.7;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(45deg, #1a0033, #000033, #001a33, #003300);
+      background-size: 400% 400%;
+      animation: cyberFlow 20s ease infinite;
+      z-index: -2;
+      opacity: 0.9;
+    }
+
+    @keyframes cyberFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(0,255,255,0.03) 50px, rgba(0,255,255,0.03) 52px),
+                  repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255,0,255,0.03) 50px, rgba(255,0,255,0.03) 52px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    #darkMode { display: none; }
+    #darkMode:checked ~ .container { filter: brightness(0.7) contrast(1.3); }
+
+    .container {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 2rem;
+      transition: var(--transition);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 25px rgba(0,255,255,0.6), 0 0 50px rgba(255,0,255,0.4);
+      animation: neonPulse 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes neonPulse {
+      from { text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff; }
+      to { text-shadow: 0 0 30px #00ffff, 0 0 60px #ff00ff, 0 0 80px #ff00ff; }
+    }
+
+    header p {
+      font-size: 1.4rem;
+      color: #88ffff;
+      margin-top: 1rem;
+      font-weight: 300;
+    }
+
+    .controls {
+      position: fixed;
+      top: 30px;
+      right: 30px;
+      display: flex;
+      gap: 18px;
+      z-index: 1000;
+    }
+
+    .control-label {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--glass);
+      border: 2px solid var(--glass-border);
+      color: var(--primary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow), inset 0 0 20px rgba(0,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .control-label:hover {
+      transform: translateY(-10px) scale(1.2);
+      box-shadow: 0 0 40px rgba(0,255,255,0.8), 0 0 60px rgba(255,0,255,0.5);
+      border-color: var(--primary);
+      background: rgba(0,255,255,0.2);
+    }
+
+    .search-container {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto 3.5rem;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 1.3rem 2.2rem;
+      border-radius: 50px;
+      border: 2px solid var(--glass-border);
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      color: var(--text);
+      font-size: 1.15rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    #searchInput::placeholder { color: rgba(0,255,255,0.7); }
+    #searchInput:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 5px rgba(0,255,255,0.4);
+      transform: scale(1.03);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-size: 1.5rem;
+      pointer-events: none;
+      text-shadow: 0 0 12px var(--primary);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 2.2rem;
+    }
+
+    .card {
+      background: var(--glass);
+      border-radius: var(--radius);
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 30px 60px rgba(0,255,255,0.4), 0 0 40px rgba(255,0,255,0.3);
+      border-color: var(--primary);
+    }
+
+    input[type="checkbox"] { display: none; }
+
+    .card-header {
+      padding: 1.8rem 2.2rem;
+      background: linear-gradient(135deg, rgba(0,255,255,0.2), rgba(255,0,255,0.2));
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--text);
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .card-header:hover {
+      background: linear-gradient(135deg, rgba(0,255,255,0.3), rgba(255,0,255,0.3));
+    }
+
+    .card-header::after {
+      content: '\f078';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: var(--primary);
+      font-size: 1.5rem;
+      transition: transform 0.5s ease;
+      text-shadow: 0 0 12px var(--primary);
+    }
+
+    input[type="checkbox"]:checked ~ .card-header::after {
+      transform: rotate(180deg);
+      color: var(--secondary);
+    }
+
+    .card-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.8s ease, padding 0.8s ease;
+      background: rgba(10, 14, 23, 0.9);
+    }
+
+    input[type="checkbox"]:checked ~ .card-body {
+      max-height: 8000px;
+      padding: 2.2rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 1rem;
+    }
+
+    th, td {
+      padding: 1.1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(0,255,255,0.2);
+    }
+
+    th {
+      background: rgba(0,255,255,0.15);
+      color: var(--primary);
+      font-weight: 600;
+      text-shadow: 0 0 6px var(--primary);
+    }
+
+    td { color: #c0fffc; }
+
+    .code-block {
+      background: rgba(0,0,0,0.7);
+      color: #a7ffeb;
+      padding: 1.6rem;
+      border-radius: 16px;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.95rem;
+      border: 1px solid rgba(0,255,255,0.4);
+      position: relative;
+      box-shadow: inset 0 0 20px rgba(0,255,255,0.15);
+    }
+
+    .code-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 16px 16px 0 0;
+    }
+
+    .print-btn {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--glass);
+      border: 2px solid var(--glass-border);
+      color: var(--primary);
+      font-size: 2rem;
+      cursor: pointer;
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      z-index: 1000;
+    }
+
+    .print-btn:hover {
+      transform: scale(1.3) rotate(360deg);
+      box-shadow: 0 0 50px rgba(0,255,255,0.9);
+      background: rgba(0,255,255,0.25);
+    }
+
+    .progress-container {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 7px;
+      background: rgba(0,0,0,0.4);
+      z-index: 1001;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      width: 0%;
+      transition: width 0.3s ease;
+      box-shadow: 0 0 20px rgba(0,255,255,0.9);
+    }
+
+    footer {
+      text-align: center;
+      padding: 4rem;
+      margin-top: 6rem;
+      color: rgba(0,255,255,0.8);
+      font-size: 1.1rem;
+      text-shadow: 0 0 12px rgba(0,255,255,0.4);
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 3rem; }
+      .grid { grid-template-columns: 1fr; }
+      .controls, .print-btn { display: none; }
+      .card-header { font-size: 1.2rem; padding: 1. 4rem; }
+      table { font-size: 0.9rem; }
+    }
+
+    @media print {
+      body, body::before, body::after { background: white !important; color: black !important; }
+      .card, .card-header, .card-body { background: white !important; border: 1px solid #ccc; }
+      input[type="checkbox"]:checked ~ .card-body { max-height: none !important; padding: 1.5rem !important; }
+      .controls, .progress-container, .print-btn, .search-container { display: none; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>C# Interview Questions & Answers</h1>
 
-        <!-- Q1 to Q10 -->
-        <div class="question">
-            <h3>1. What is ASP.NET?</h3>
-            <div class="answer">
-                ASP.NET is a <strong>server-side technology</strong> used for developing dynamic websites and web applications on the internet. It also produces data-driven web applications.<br>
-                Microsoft released ASP.NET in <strong>2002</strong> to build dynamic websites and web applications using the .NET framework.
-            </div>
-        </div>
+  <input type="checkbox" id="darkMode">
+  <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
 
-        <div class="question">
-            <h3>2. What is the ASP.NET Life Cycle, and list the types of Life Cycle?</h3>
-            <div class="answer">
-                When ASP.NET pages run, it goes through several life cycle steps, which perform a series of actions like initialization, running, restoring, and rendering.<br><br>
-                <strong>Life Cycle is classified into two categories:</strong>
-                <ul>
-                    <li><strong>Application Life Cycle:</strong> The user requests to access the application.</li>
-                    <li><strong>Page Life Cycle:</strong> The cycle has phases like initialization, restoring, execution, and page rendering.</li>
-                </ul>
-            </div>
-        </div>
+  <div class="controls">
+    <label for="darkMode" class="control-label">Moon</label>
+    <a href="javascript:window.print()" class="control-label">Print</a>
+  </div>
 
-        <div class="question">
-            <h3>3. What is MVC?</h3>
-            <div class="answer">
-                MVC is a <strong>software architectural pattern</strong> that divides an application into three main parts: <strong>Model, View, and Controller</strong>.
-                <ul>
-                    <li><strong>Model:</strong> The model helps to create the application's data domain and represents the application's public properties and business logic.</li>
-                    <li><strong>View:</strong> View represents the data tables, charts, and diagrams by collecting the data from the model.</li>
-                    <li><strong>Controller:</strong> The controller helps handle user interactions and controls the flow of the application.</li>
-                </ul>
-            </div>
-        </div>
+  <div class="container">
+    <header>
+      <h1>C# INTERVIEW VAULT</h1>
+      <p>10 Elite Q&A • 5 Differences + Example • Click to Expand</p>
+    </header>
 
-        <div class="question">
-            <h3>4. What is CLR?</h3>
-            <div class="answer">
-                CLR is the <strong>Common Language Runtime</strong> virtual machine component of the .NET framework used to run the code. It manages and executes .NET programs and implements a Virtual Execution System (VES) internally.<br><br>
-                <strong>Services provided by CLR:</strong> Verification, Garbage collection, Security, Memory management
-            </div>
-        </div>
-
-        <div class="question">
-            <h3>5. What is IIS? And why do you use it?</h3>
-            <div class="answer">
-                <strong>Internet Information Server (IIS)</strong> is the most popular web server used to host and provide internet-based services to ASP.NET and ASP Web applications.<br><br>
-                IIS has its process engine to handle the requests. Using an IIS computer can work as a web server and provide functionality for deploying ASP.NET web applications. It is also responsible for responding to users' requests.
-            </div>
-        </div>
-
-        <div class="question">
-            <h3>6. List types of Application Life Cycle.</h3>
-            <div class="answer">
-                Application Life Cycle is of <strong>five types</strong>:
-                <ol>
-                    <li><strong>Application Start:</strong> Application Start is a method you execute when a user requests.</li>
-                    <li><strong>Object Creation:</strong> Object Creation contains all the information about current requests and browsing information.</li>
-                    <li><strong>HTTP Application:</strong> HTTP Application processes all subsequent requests sent to the application.</li>
-                    <li><strong>Dispose:</strong> Dispose is responsible for releasing manually unwanted resources.</li>
-                    <li><strong>Application End:</strong> Application End helps to unload the memory of an application.</li>
-                </ol>
-            </div>
-        </div>
-
-        <div class="question">
-            <h3>7. List the advantages of using ASP.NET</h3>
-            <div class="answer">
-                ASP.NET is a development framework used for developing web applications. It is one of the most preferred web development technologies at present.<br><br>
-                <strong>Advantages:</strong>
-                <ul>
-                    <li>Applications created using ASP.NET show better performance</li>
-                    <li>ASP.NET provides multi-development modes for the applications</li>
-                    <li>Applications created using ASP.NET can be used across the globe</li>
-                    <li>ASP.NET is language-independent.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Comparison Tables -->
-        <div class="section">
-            <h2>Core C# Concepts Comparison</h2>
-
-            <h3>Value Type vs Reference Type</h3>
-            <table>
-                <tr><th>Feature</th><th>Value Type</th><th>Reference Type</th></tr>
-                <tr><td>Storage</td><td>Stored in stack</td><td>Stored in heap</td></tr>
-                <tr><td>Data Access</td><td>Directly holds data</td><td>Holds a reference (address) to the data</td></tr>
-                <tr><td>Examples</td><td>int, float, bool, char, struct</td><td>class, interface, array, string, object</td></tr>
-                <tr><td>Modification</td><td>Changes do not affect original data</td><td>Changes affect the original object</td></tr>
-                <tr><td>Example</td><td colspan="2"><code>int a = 10; int b = a;</code></td></tr>
-            </table>
-
-            <h3>Stack vs Heap</h3>
-            <table>
-                <tr><th>Feature</th><th>Stack</th><th>Heap</th></tr>
-                <tr><td>Storage</td><td>Stores value types & method calls</td><td>Stores reference types</td></tr>
-                <tr><td>Size</td><td>Small & fixed size</td><td>Large & dynamic</td></tr>
-                <tr><td>Access Speed</td><td>Faster</td><td>Slower (due to garbage collection)</td></tr>
-                <tr><td>Lifetime</td><td>Destroyed after method execution</td><td>Exists until garbage collection</td></tr>
-            </table>
-
-            <h3>Abstract Class vs Interface</h3>
-            <table>
-                <tr><th>Feature</th><th>Abstract Class</th><th>Interface</th></tr>
-                <tr><td>Method Implementation</td><td>Can have implemented methods</td><td>Only method declarations (before C# 8)</td></tr>
-                <tr><td>Multiple Inheritance</td><td>❌ No</td><td>✅ Yes</td></tr>
-                <tr><td>Access Modifiers</td><td>✅ public, private, protected</td><td>❌ Only public</td></tr>
-            </table>
-
-            <h3>const vs readonly vs static</h3>
-            <table>
-                <tr><th>Feature</th><th>const</th><th>readonly</th><th>static</th></tr>
-                <tr><td>Value Change</td><td>❌ Cannot change</td><td>✅ In constructor</td><td>✅ Anytime</td></tr>
-                <tr><td>Initialization</td><td>At compile time</td><td>At runtime (in constructor)</td><td>Shared across all instances</td></tr>
-            </table>
-
-            <h3>ref vs out vs in</h3>
-            <table>
-                <tr><th>Feature</th><th>ref</th><th>out</th><th>in</th></tr>
-                <tr><td>Initialization Before Passing</td><td>✅ Required</td><td>❌ Not required</td><td>✅ Required</td></tr>
-                <tr><td>Modification Inside Method</td><td>✅ Allowed</td><td>✅ Required</td><td>❌ Not allowed</td></tr>
-            </table>
-
-            <h3>IEnumerable&lt;T&gt; vs IQueryable&lt;T&gt;</h3>
-            <table>
-                <tr><th>Feature</th><th>IEnumerable&lt;T&gt;</th><th>IQueryable&lt;T&gt;</th></tr>
-                <tr><td>Execution</td><td>In-memory execution</td><td>Database-side execution (lazy loading)</td></tr>
-                <tr><td>Performance</td><td>Slower for large data</td><td>Optimized for large datasets</td></tr>
-                <tr><td>Use Case</td><td>Collections like List&lt;T&gt;</td><td>LINQ to SQL queries</td></tr>
-            </table>
-
-            <h3>string vs StringBuilder</h3>
-            <table>
-                <tr><th>Feature</th><th>string</th><th>StringBuilder</th></tr>
-                <tr><td>Mutability</td><td>Immutable</td><td>Mutable</td></tr>
-                <tr><td>Performance</td><td>Slow for modifications</td><td>Faster for multiple changes</td></tr>
-            </table>
-
-            <h3>Array vs List&lt;T&gt;</h3>
-            <table>
-                <tr><th>Feature</th><th>Array</th><th>List&lt;T&gt;</th></tr>
-                <tr><td>Size</td><td>Fixed</td><td>Dynamic</td></tr>
-                <tr><td>Performance</td><td>Faster</td><td>Slightly slower</td></tr>
-            </table>
-
-            <h3>Synchronous vs Asynchronous</h3>
-            <table>
-                <tr><th>Feature</th><th>Synchronous</th><th>Asynchronous</th></tr>
-                <tr><td>Execution</td><td>Blocks the thread</td><td>Non-blocking</td></tr>
-                <tr><td>Performance</td><td>Slower if tasks take time</td><td>Faster, prevents UI freezing</td></tr>
-            </table>
-
-            <h3>throw vs throw ex</h3>
-            <table>
-                <tr><th>Feature</th><th>throw</th><th>throw ex</th></tr>
-                <tr><td>Stack Trace</td><td>Preserves original</td><td>Resets stack trace</td></tr>
-            </table>
-
-            <h3>== vs .Equals()</h3>
-            <table>
-                <tr><th>Feature</th><th>== Operator</th><th>.Equals() Method</th></tr>
-                <tr><td>Comparison</td><td>Checks reference for objects</td><td>Checks value for objects</td></tr>
-            </table>
-
-            <h3>Dispose() vs Finalize()</h3>
-            <table>
-                <tr><th>Feature</th><th>Dispose()</th><th>Finalize()</th></tr>
-                <tr><td>Called By</td><td>Manually (using block)</td><td>GC</td></tr>
-                <tr><td>Performance</td><td>Faster</td><td>Slower</td></tr>
-            </table>
-
-            <h3>var vs dynamic</h3>
-            <table>
-                <tr><th>Feature</th><th>var</th><th>dynamic</th></tr>
-                <tr><td>Type Determination</td><td>Compile-time</td><td>Runtime</td></tr>
-            </table>
-
-            <h3>Tuple vs Anonymous Type</h3>
-            <table>
-                <tr><th>Feature</th><th>Tuple</th><th>Anonymous Type</th></tr>
-                <tr><td>Mutability</td><td>✅ Mutable</td><td>❌ Immutable</td></tr>
-                <tr><td>Reusability</td><td>✅ Reusable</td><td>❌ One-time use</td></tr>
-            </table>
-
-            <h3>ViewBag vs ViewData vs TempData</h3>
-            <table>
-                <tr><th>Feature</th><th>ViewBag</th><th>ViewData</th><th>TempData</th></tr>
-                <tr><td>Type</td><td>Dynamic</td><td>Dictionary</td><td>Dictionary</td></tr>
-                <tr><td>Scope</td><td>Single request</td><td>Single request</td><td>Available for next request</td></tr>
-            </table>
-
-            <h3>Session vs Cache vs Cookies vs ViewState</h3>
-            <table>
-                <tr><th>Feature</th><th>Session</th><th>Cache</th><th>Cookies</th><th>ViewState</th></tr>
-                <tr><td>Scope</td><td>User-specific</td><td>App-wide</td><td>Client-side</td><td>Page-specific</td></tr>
-                <tr><td>Storage</td><td>Server memory</td><td>Server memory</td><td>Browser</td><td>Hidden field</td></tr>
-            </table>
-        </div>
-
-        <!-- MVC Specific -->
-        <div class="section">
-            <h2>MVC Return Types & Concepts</h2>
-
-            <div class="question">
-                <h3>Q1. What are the different return types in MVC?</h3>
-                <div class="answer">
-                    <ul>
-                        <li>Return View</li>
-                        <li>Return Partial View</li>
-                        <li>Return Redirect</li>
-                        <li>Redirect To Action</li>
-                        <li>Return Content</li>
-                        <li>Return JSON</li>
-                        <li>Return JavaScript</li>
-                        <li>Return File</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="question">
-                <h3>Q2. Difference between ViewBag, ViewData, and TempData?</h3>
-                <div class="answer">
-                    <strong>ViewBag:</strong> Dynamic object to pass data from Controller to View.<br>
-                    <strong>ViewData:</strong> Dictionary object, key-value pair.<br>
-                    <strong>TempData:</strong> Dictionary object to pass data between actions, stored in session. Requires typecasting and null checking.
-                </div>
-            </div>
-
-            <div class="question">
-                <h3>Q3. What is routing & types in MVC?</h3>
-                <div class="answer">
-                    Routing processes incoming URL descriptively.<br><br>
-                    <strong>Types:</strong>
-                    <ul>
-                        <li><strong>Convention-based routing:</strong> Uses <code>MapRoute</code></li>
-                        <li><strong>Attribute-based routing:</strong> Uses <code>[Route]</code> attribute</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="question">
-                <h3>Q4. What is Polymorphism?</h3>
-                <div class="answer">
-                    Polymorphism means "one name, many forms". It allows a class to have multiple implementations with the same name. Core OOP principle.
-                </div>
-            </div>
-
-            <div class="question">
-                <h3>Q5. Types of Polymorphism?</h3>
-                <div class="answer">
-                    <ul>
-                        <li><strong>Static Polymorphism</strong> (Compile-time)</li>
-                        <li><strong>Dynamic Polymorphism</strong> (Runtime)</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="question">
-                <h3>Q6. What is Boxing & Unboxing?</h3>
-                <div class="answer">
-                    <strong>Boxing:</strong> Value type → Reference type<br>
-                    <strong>Unboxing:</strong> Reference type → Value type
-                </div>
-            </div>
-
-            <div class="question">
-                <h3>Q7. What is Partial class?</h3>
-                <div class="answer">
-                    Splits class definition across multiple .cs files. Compiled as one class.
-                </div>
-            </div>
-
-            <div class="question">
-                <h3>Q8. What is a sealed class?</h3>
-                <div class="answer">
-                    Cannot be inherited. Uses <code>sealed</code> modifier.
-                </div>
-            </div>
-
-            <div class="question">
-                <h3>Q9. What is an abstract class?</h3>
-                <div class="answer">
-                    Incomplete class, cannot be instantiated. Provides blueprint for derived classes.
-                </div>
-            </div>
-
-            <div class="question">
-                <h3>Q10. What is Interface?</h3>
-                <div class="answer">
-                    Contains only declarations (methods, properties). Used for plug-and-play architecture.
-                </div>
-            </div>
-        </div>
-
-        <!-- Advanced Topics -->
-        <div class="section">
-            <h2>Advanced C# Concepts</h2>
-
-            <div class="question">
-                <h3>#2. What is CLR and why is it important?</h3>
-                <div class="answer">
-                    CLR is the execution environment for .NET apps. Provides memory management, security, JIT compilation, and GC.<br><br>
-                    <strong>GC Process:</strong> Marking → Sweeping → Compacting
-                </div>
-            </div>
-
-            <div class="question">
-                <h3>#8. Interface vs Abstract Class</h3>
-                <div class="answer">
-                    <strong>Interface:</strong> Contract only, multiple inheritance<br>
-                    <strong>Abstract Class:</strong> Partial implementation, single inheritance
-                </div>
-            </div>
-
-            <div class="tip">
-                <h3>✅ Dependency Injection (DI)</h3>
-                <p>Objects receive dependencies from outside instead of creating them.</p>
-                <strong>Types:</strong> Constructor (Most Common), Method, Property<br>
-                <strong>Lifetimes:</strong> Singleton, Scoped, Transient
-            </div>
-
-            <div class="tip">
-                <h3>🔷 IEnumerable vs IQueryable</h3>
-                <strong>IEnumerable:</strong> In-memory, LINQ to Objects<br>
-                <strong>IQueryable:</strong> Database-side, LINQ to SQL
-            </div>
-
-            <div class="tip">
-                <h3>🔸 ref vs out</h3>
-                <strong>ref:</strong> Must be initialized before passing<br>
-                <strong>out:</strong> Must be assigned inside method
-            </div>
-
-            <div class="tip">
-                <h3>🔸 Middleware in ASP.NET Core</h3>
-                Components in HTTP request-response pipeline.
-            </div>
-
-            <div class="tip">
-                <h3>🔸 Entity Framework (EF)</h3>
-                ORM mapping C# classes to database.<br>
-                <strong>Approaches:</strong> Code First, Database First, Model First
-            </div>
-        </div>
-
-        <!-- C# Version History -->
-        <div class="section">
-            <h2>🧠 C# All Versions (2002–2024)</h2>
-            <table>
-                <tr><th>Version</th><th>Year</th><th>Major Features</th></tr>
-                <tr><td>C# 1.0</td><td>2002</td><td>Basic OOP, Value/Reference Types</td></tr>
-                <tr><td>C# 2.0</td><td>2005</td><td>Generics, Nullable, yield</td></tr>
-                <tr><td>C# 3.0</td><td>2007</td><td>LINQ, Lambda, Auto-properties</td></tr>
-                <tr><td>C# 4.0</td><td>2010</td><td>dynamic, Named Parameters</td></tr>
-                <tr><td>C# 5.0</td><td>2012</td><td>async/await</td></tr>
-                <tr><td>C# 6.0</td><td>2015</td><td>String interpolation, Null-conditional</td></tr>
-                <tr><td>C# 7.x</td><td>2017-18</td><td>Tuples, Pattern Matching</td></tr>
-                <tr><td>C# 8. aleg0</td><td>2019</td><td>Nullable ref types, Async streams</td></tr>
-                <tr><td>C# 9.0</td><td>2020</td><td>record, Init-only setters</td></tr>
-                <tr><td>C# 10.0</td><td>2021</td><td>Global using, File-scoped namespaces</td></tr>
-                <tr><td>C# 11.0</td><td>2022</td><td>required, Raw string literals</td></tr>
-                <tr><td>C# 12.0</td><td>2023</td><td>Primary constructors, Collection expressions</td></tr>
-                <tr><td>C# 13.0</td><td>2024</td><td>Coming with .NET 9</td></tr>
-            </table>
-        </div>
-
-        <footer style="text-align: center; margin-top: 50px; color: #777; font-size: 0.9em;">
-            &copy; 2025 C# Interview Prep | All Rights Reserved
-        </footer>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search C# mastery..." oninput="filterCards(this.value)">
+      <i class="fas fa-search search-icon"></i>
     </div>
+
+    <div class="grid">
+
+      <!-- Q1 -->
+      <div class="card">
+        <input type="checkbox" id="q1">
+        <label class="card-header" for="q1">1. Abstract Class vs Interface</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>Abstract Class</th><th>Interface</th></tr>
+            <tr><td>1</td><td>Can have fields & constructors</td><td>No fields or constructors</td></tr>
+            <tr><td>2</td><td>Single inheritance</td><td>Multiple inheritance</td></tr>
+            <tr><td>3</td><td>Can have implemented methods</td><td>Only declarations (C# 8+ default)</td></tr>
+            <tr><td>4</td><td>Access modifiers allowed</td><td>All public by default</td></tr>
+            <tr><td>5</td><td>Share common code</td><td>Define contract</td></tr>
+          </table>
+          <div class="code-block">
+            abstract class Animal { public abstract void Speak(); }<br>
+            interface IDrive { void Drive(); }<br><br>
+            class Dog : Animal { public override void Speak() => Console.WriteLine("Woof"); }<br>
+            class Car : IDrive { public void Drive() => Console.WriteLine("Vroom"); }
+          </div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="card">
+        <input type="checkbox" id="q2">
+        <label class="card-header" for="q2">2. Delegate vs Event</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>Delegate</th><th>Event</th></tr>
+            <tr><td>1</td><td>Type-safe function pointer</td><td>Wrapper over delegate</td></tr>
+            <tr><td>2</td><td>Can be invoked directly</td><td>Only publisher can raise</td></tr>
+            <tr><td>3</td><td>No encapsulation</td><td>Encapsulated</td></tr>
+            <tr><td>4</td><td>Used in LINQ, async</td><td>Used in GUI, notifications</td></tr>
+            <tr><td>5</td><td>Anyone can call</td><td>Only class can raise</td></tr>
+          </table>
+          <div class="code-block">
+            public delegate void Notify();<br>
+            public event Notify OnNotify;<br><br>
+            // Delegate<br>
+            Notify handler = () => Console.WriteLine("Called");<br>
+            handler(); // Direct call<br><br>
+            // Event<br>
+            OnNotify += () => Console.WriteLine("Event");<br>
+            // OnNotify(); // Error: only class can raise
+          </div>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="card">
+        <input type="checkbox" id="q3">
+        <label class="card-header" for="q3">3. Static vs Singleton</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>Static Class</th><th>Singleton</th></tr>
+            <tr><td>1</td><td>No instance</td><td>One instance</td></tr>
+            <tr><td>2</td><td>Cannot inherit</td><td>Can inherit/implement</td></tr>
+            <tr><td>3</td><td>Hard to test</td><td>Easy to mock</td></tr>
+            <tr><td>4</td><td>Loaded at start</td><td>Lazy loading</td></tr>
+            <tr><td>5</td><td>No DI</td><td>Supports DI</td></tr>
+          </table>
+          <div class="code-block">
+            public static class MathUtils { public static int Add(int a, int b) => a + b; }<br><br>
+            public class Logger {<br>
+            &nbsp;&nbsp;private static Logger _instance;<br>
+            &nbsp;&nbsp;private Logger() {}<br>
+            &nbsp;&nbsp;public static Logger Instance => _instance ??= new Logger();<br>
+            &nbsp;&nbsp;public void Log(string msg) => Console.WriteLine(msg);<br>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="card">
+        <input type="checkbox" id="q4">
+        <label class="card-header" for="q4">4. ref vs out</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>ref</th><th>out</th></tr>
+            <tr><td>1</td><td>Must initialize before</td><td>No init required</td></tr>
+            <tr><td>2</td><td>Can read inside</td><td>Cannot read before assign</td></tr>
+            <tr><td>3</td><td>Optional assign</td><td>Must assign</td></tr>
+            <tr><td>4</td><td>Modify existing</td><td>Return new value</td></tr>
+            <tr><td>5</td><td>Two-way</td><td>Output-only</td></tr>
+          </table>
+          <div class="code-block">
+            void Modify(ref int x) { x += 10; }<br>
+            void Get(out int x) { x = 100; }<br><br>
+            int a = 5; Modify(ref a); // a = 15<br>
+            int b; Get(out b); // b = 100
+          </div>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="card">
+        <input type="checkbox" id="q5">
+        <label class="card-header" for="q5">5. string vs StringBuilder</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>string</th><th>StringBuilder</th></tr>
+            <tr><td>1</td><td>Immutable</td><td>Mutable</td></tr>
+            <tr><td>2</td><td>New object on change</td><td>Same object</td></tr>
+            <tr><td>3</td><td>Slow in loops</td><td>Fast in loops</td></tr>
+            <tr><td>4</td><td>String pool</td><td>Dynamic buffer</td></tr>
+            <tr><td>5</td><td>Fixed text</td><td>Dynamic text</td></tr>
+          </table>
+          <div class="code-block">
+            string s = "Hi"; s += " there"; // New object<br><br>
+            StringBuilder sb = new("Hi");<br>
+            sb.Append(" there"); // Same object
+          </div>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="card">
+        <input type="checkbox" id="q6">
+        <label class="card-header" for="q6">6. Boxing vs Unboxing</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>Boxing</th><th>Unboxing</th></tr>
+            <tr><td>1</td><td>Value → Object</td><td>Object → Value</td></tr>
+            <tr><td>2</td><td>Stack → Heap</td><td>Heap → Stack</td></tr>
+            <tr><td>3</td><td>Implicit</td><td>Explicit cast</td></tr>
+            <tr><td>4</td><td>Allocates memory</td><td>Copies value</td></tr>
+            <tr><td>5</td><td>Slower</td><td>Slower + exception risk</td></tr>
+          </table>
+          <div class="code-block">
+            int i = 10;<br>
+            object obj = i; // Boxing<br>
+            int j = (int)obj; // Unboxing
+          </div>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="card">
+        <input type="checkbox" id="q7">
+        <label class="card-header" for="q7">7. IEnumerable vs IQueryable</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>IEnumerable</th><th>IQueryable</th></tr>
+            <tr><td>1</td><td>In-memory</td><td>Database-side</td></tr>
+            <tr><td>2</td><td>LINQ to Objects</td><td>LINQ to SQL</td></tr>
+            <tr><td>3</td><td>Client execution</td><td>Server execution</td></tr>
+            <tr><td>4</td><td>Slower for big data</td><td>Faster (SQL)</td></tr>
+            <tr><td>5</td><td>List, Array</td><td>DbContext</td></tr>
+          </table>
+          <div class="code-block">
+            List<int> list = new() {1,2,3};<br>
+            var q1 = list.Where(x => x > 1); // IEnumerable<br><br>
+            var q2 = db.Users.Where(u => u.Age > 18); // IQueryable
+          </div>
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="card">
+        <input type="checkbox" id="q8">
+        <label class="card-header" for="q8">8. Thread vs Task</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>Thread</th><th>Task</th></tr>
+            <tr><td>1</td><td>Low-level</td><td>High-level</td></tr>
+            <tr><td>2</td><td>OS managed</td><td>ThreadPool</td></tr>
+            <tr><td>3</td><td>Heavy</td><td>Lightweight</td></tr>
+            <tr><td>4</td><td>No async/await</td><td>Supports async</td></tr>
+            <tr><td>5</td><td>Manual control</td><td>Auto managed</td></tr>
+          </table>
+          <div class="code-block">
+            new Thread(() => Console.WriteLine("Thread")).Start();<br><br>
+            Task.Run(() => Console.WriteLine("Task"));
+          </div>
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="card">
+        <input type="checkbox" id="q9">
+        <label class="card-header" for="q9">9. const vs readonly</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>const</th><th>readonly</th></tr>
+            <tr><td>1</td><td>Compile-time</td><td>Runtime</td></tr>
+            <tr><td>2</td><td>Primitives only</td><td>Any type</td></tr>
+            <tr><td>3</td><td>Implicit static</td><td>Can be instance</td></tr>
+            <tr><td>4</td><td>Never changes</td><td>Set in constructor</td></tr>
+            <tr><td>5</td><td>Substituted in IL</td><td>Stored in memory</td></tr>
+          </table>
+          <div class="code-block">
+            public const double Pi = 3.14;<br>
+            public readonly int Id;<br>
+            public MyClass(int id) => Id = id;
+          </div>
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="card">
+        <input type="checkbox" id="q10">
+        <label class="card-header" for="q10">10. == vs .Equals()</label>
+        <div class="card-body">
+          <table>
+            <tr><th>#</th><th>==</th><th>.Equals()</th></tr>
+            <tr><td>1</td><td>Reference (default)</td><td>Value (if overridden)</td></tr>
+            <tr><td>2</td><td>Can overload</td><td>Can override</td></tr>
+            <tr><td>3</td><td>Fast</td><td>Slightly slower</td></tr>
+            <tr><td>4</td><td>String: content</td><td>String: content</td></tr>
+            <tr><td>5</td><td>Null safe with null</td><td>Risk of NullRef</td></tr>
+          </table>
+          <div class="code-block">
+            string a = "hi", b = "hi";<br>
+            a == b // True (content)<br>
+            a.Equals(b) // True<br><br>
+            object o1 = new(), o2 = new();<br>
+            o1 == o2 // False (reference)<br>
+            o1.Equals(o2) // False
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <a href="javascript:window.print()" class="print-btn">Print</a>
+
+  <footer>
+    <p>© 2025 C# Cyber Vault • <strong>10 Elite Q&A</strong> • 5 Differences + Example</p>
+    <p>Made with <span style="color:var(--primary);">Neon</span> & <span style="color:var(--secondary);">Precision</span></p>
+  </footer>
+
+  <script>
+    function filterCards(term) {
+      term = term.toLowerCase();
+      document.querySelectorAll('.card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(term) ? 'block' : 'none';
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+  </script>
 </body>
 </html>
