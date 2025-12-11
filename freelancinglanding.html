@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hire Ravi Kumar Mishra — Freelance .NET Developer</title>
+  <meta name="description" content="Hire Ravi Kumar Mishra — ASP.NET Core, Web API, .NET MAUI, SQL, Blazor. No upfront payment. Free consultation & free bug fix." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root{
+      --bg1:#050816; --bg2:#0f1724; --neon1:#00e6ff; --neon2:#a855f7;
+      --card: rgba(255,255,255,0.04); --glass: rgba(255,255,255,0.03);
+      --text:#e6eef6; --muted:#9aa7bf; --accent:#ffd166;
+      --success:#22c55e;
+    }
+    .light{ --bg1:#f7fbff; --bg2:#eef4ff; --card:rgba(17,24,39,0.03); --text:#0b1220; --muted:#475569; --neon1:#0ea5e9; --neon2:#7c3aed; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));
+      color:var(--text); min-height:100vh;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    .wrap{max-width:1150px;margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0}
+    .brand{font-weight:800;font-size:1.25rem;background:linear-gradient(90deg,var(--neon1),var(--neon2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .mode{background:transparent;border:0;color:var(--neon1);cursor:pointer;font-size:1.1rem}
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:28px 0}
+    .hero-left h1{font-size:2.4rem;line-height:1.02;margin-bottom:10px;background:linear-gradient(90deg,var(--neon1),var(--neon2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .sub{color:var(--muted);margin-bottom:16px;font-size:1.02rem}
+    .offer{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;background:linear-gradient(90deg,rgba(0,230,255,0.08),rgba(168,85,247,0.06));
+      border:1px solid rgba(255,255,255,0.06);font-weight:700;color:var(--neon1);margin-bottom:16px;
+    }
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{
+      padding:12px 20px;border-radius:999px;border:0;cursor:pointer;font-weight:700;
+      background:linear-gradient(90deg,var(--neon1),var(--neon2)); color:#000; box-shadow:0 10px 30px rgba(0,0,0,0.25);
+    }
+    .btn.ghost{background:transparent;border:2px solid var(--neon1);color:var(--neon1)}
+    /* HERO RIGHT card */
+    .profile-card{background:var(--card);padding:18px;border-radius:14px;border:1px solid rgba(255,255,255,0.06);display:flex;gap:14px;align-items:center;box-shadow:0 10px 30px rgba(0,0,0,0.25)}
+    .avatar{width:96px;height:96px;border-radius:14px;overflow:hidden;border:4px solid rgba(168,85,247,0.15)}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .pc-right h3{margin-bottom:6px}
+    .pc-right p{color:var(--muted);font-size:0.95rem;margin-bottom:8px}
+    .pc-actions{display:flex;gap:8px}
+    .chip{padding:6px 10px;border-radius:10px;background:rgba(0,0,0,0.15);color:var(--text);font-weight:600;font-size:0.95rem}
+    /* SERVICES */
+    .section{margin-top:36px;padding:26px 0;border-top:1px dashed rgba(255,255,255,0.03)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:16px}
+    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.05);box-shadow:0 8px 30px rgba(0,0,0,0.2)}
+    .card h4{margin-bottom:8px}
+    .muted{color:var(--muted);font-size:0.95rem}
+    /* PRICING */
+    .pricing{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px}
+    .price-card{flex:1;min-width:240px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.06)}
+    .price-card .price{font-size:1.6rem;font-weight:800;margin:8px 0}
+    .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(0,230,255,0.06);color:var(--neon1);font-weight:700}
+    .small{font-size:0.9rem;color:var(--muted)}
+    /* TESTIMONIALS */
+    .testimonials{margin-top:22px;position:relative;overflow:hidden}
+    .slides{display:flex;gap:14px;transition:transform .45s cubic-bezier(.2,.9,.2,1)}
+    .testimonial{min-width:280px;background:var(--glass);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);color:var(--muted)}
+    .testimonial p{font-size:0.95rem}
+    .dots{display:flex;gap:8px;margin-top:12px;justify-content:center}
+    .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.08);cursor:pointer}
+    .dot.active{background:linear-gradient(90deg,var(--neon1),var(--neon2))}
+    /* CONTACT */
+    .contact-wrap{display:grid;grid-template-columns:1fr 380px;gap:18px;margin-top:20px}
+    form{display:grid;gap:12px}
+    input,textarea{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--text)}
+    textarea{min-height:140px;resize:vertical}
+    .contact-info{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.04)}
+    .contact-info h4{margin-bottom:8px}
+    .actions{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+    .wbtn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--neon1),var(--neon2));color:#000;font-weight:700;text-decoration:none}
+    footer{margin-top:36px;padding:16px 0;text-align:center;color:var(--muted);font-size:0.95rem}
+    /* responsive */
+    @media(max-width:980px){.hero{grid-template-columns:1fr}.contact-wrap{grid-template-columns:1fr}.profile-card{justify-content:space-between}}
+    @media(max-width:520px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">RaviMishra.dev</div>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+        <button id="mode" class="mode" title="Toggle light/dark">🌙</button>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-left">
+        <div class="offer">🔥 BEST OFFER: <strong style="margin-left:8px">No Upfront Payment • Free Bug Fix / Free Consultation</strong></div>
+        <h1>I build fast, secure, and maintainable apps — You pay only when you're satisfied.</h1>
+        <p class="sub">Full Stack .NET Developer (ASP.NET Core, Web API, Blazor, .NET MAUI, SQL). Small fixes to full products — fast delivery, clean code, lifetime support.</p>
+
+        <div class="badges">
+          <div class="chip">No Upfront Payment</div>
+          <div class="chip">Free Initial Bug Fix</div>
+          <div class="chip">Daily Updates</div>
+          <div class="chip">Source Code Provided</div>
+        </div>
+
+        <div class="cta-row">
+          <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"><i class="fas fa-rocket"></i> Start Project — Free Consult</button>
+          <a class="btn ghost" href="resume.pdf" download><i class="fas fa-download"></i> Download CV</a>
+          <a class="wbtn" href="https://wa.me/919999999999" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+
+        <div style="margin-top:18px" class="small muted">
+          <strong>Quick pitch:</strong> I fix bugs, create APIs, build admin dashboards, integrate payments (Razorpay/Stripe/PayPal) and deliver production-ready code — pay only after you review the work.
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <div class="avatar"><img src="profile.jpg" alt="Ravi Kumar Mishra"></div>
+        <div class="pc-right">
+          <h3>Ravi Kumar Mishra</h3>
+          <p class="muted">Senior .NET Developer • API & Web Apps • 50+ Projects</p>
+          <div class="pc-actions">
+            <div class="tag">Available Immediately</div>
+            <div class="tag" style="background:linear-gradient(90deg,var(--neon1),var(--neon2));color:#000">No Upfront</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <h3 class="section-title">Services I Offer</h3>
+      <div class="grid">
+        <div class="card">
+          <h4>Web Apps & APIs</h4>
+          <div class="muted">ASP.NET Core Web API, Authentication, Role-based Access, Payment integration, Third-party APIs.</div>
+        </div>
+        <div class="card">
+          <h4>Mobile Apps (.NET MAUI)</h4>
+          <div class="muted">Cross-platform apps, offline sync, push notifications, store-ready builds.</div>
+        </div>
+        <div class="card">
+          <h4>Fixes & Optimization</h4>
+          <div class="muted">Bug fixes, performance tuning, DB optimization, security hardening.</div>
+        </div>
+        <div class="card">
+          <h4>Custom Software</h4>
+          <div class="muted">Billing, POS, Inventory, CRM, automation & reporting solutions.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="section">
+      <h3 class="section-title">Simple Pricing (Choose & Start)</h3>
+      <div class="pricing">
+        <div class="price-card">
+          <div class="tag">Quick Fix</div>
+          <div class="price">₹1,499</div>
+          <div class="small">Small bug fixes / UI tweaks / 1 day delivery</div>
+          <ul style="margin-top:10px;color:var(--muted);line-height:1.6">
+            <li>Free initial diagnosis</li>
+            <li>No upfront — pay after review</li>
+            <li>1 revision</li>
+          </ul>
+          <div style="margin-top:12px"><button class="btn" onclick="contactWith('Quick Fix')">Order Now</button></div>
+        </div>
+
+        <div class="price-card">
+          <div class="tag">Standard</div>
+          <div class="price">₹9,999</div>
+          <div class="small">API / Module / Small Website • 3–7 days</div>
+          <ul style="margin-top:10px;color:var(--muted);line-height:1.6">
+            <li>Design + Development</li>
+            <li>No upfront • 2 revisions</li>
+            <li>Source code + docs</li>
+          </ul>
+          <div style="margin-top:12px"><button class="btn" onclick="contactWith('Standard Package')">Order Now</button></div>
+        </div>
+
+        <div class="price-card">
+          <div class="tag">Premium</div>
+          <div class="price">Custom</div>
+          <div class="small">Enterprise-grade apps & integrations</div>
+          <ul style="margin-top:10px;color:var(--muted);line-height:1.6">
+            <li>Custom proposal & timeline</li>
+            <li>No upfront — milestone-based</li>
+            <li>Priority support</li>
+          </ul>
+          <div style="margin-top:12px"><button class="btn" onclick="contactWith('Premium/Custom')">Get Quote</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="section">
+      <h3 class="section-title">What Clients Say</h3>
+      <div class="testimonials">
+        <div class="slides" id="slides">
+          <div class="testimonial">
+            <strong>Akash P. — Founder</strong>
+            <p>"Ravi delivered our API and dashboard in 5 days. Clean code and excellent communication. Highly recommended."</p>
+          </div>
+          <div class="testimonial">
+            <strong>Neha S. — Product Manager</strong>
+            <p>"Fixed critical payment issue within hours with zero downtime. Brilliant problem-solving."</p>
+          </div>
+          <div class="testimonial">
+            <strong>Vikram R. — CTO</strong>
+            <p>"Professional, fast, and reliable. Delivered beyond expectations and provided documentation."</p>
+          </div>
+        </div>
+        <div class="dots" id="dots"></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <h3 class="section-title">Ready to Start? Contact Me</h3>
+      <div class="contact-wrap">
+        <form id="contactForm" onsubmit="sendForm(event)">
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+          <input type="email" id="email" name="email" placeholder="Email address" required>
+          <input type="text" id="subject" name="subject" placeholder="Project / Subject" required>
+          <textarea id="message" name="message" placeholder="Brief about your project..." required></textarea>
+          <div style="display:flex;gap:10px;align-items:center">
+            <button type="submit" class="btn">Send Message</button>
+            <a class="btn ghost" href="mailto:yourmail@gmail.com?subject=Project%20Inquiry">Email Direct</a>
+          </div>
+        </form>
+
+        <aside class="contact-info">
+          <h4>Contact Info</h4>
+          <div class="muted">Phone: <a href="tel:+919999999999" style="color:var(--neon1);text-decoration:none">+91 99999 99999</a></div>
+          <div class="muted" style="margin-top:6px">Email: <a href="mailto:yourmail@gmail.com" style="color:var(--neon1);text-decoration:none">yourmail@gmail.com</a></div>
+
+          <div style="margin-top:12px">
+            <strong>Start instantly:</strong>
+            <div class="actions">
+              <a class="wbtn" href="https://wa.me/919999999999" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+              <a class="wbtn" href="tel:+919999999999"><i class="fas fa-phone"></i> Call</a>
+              <a class="wbtn" href="resume.pdf" download><i class="fas fa-file-download"></i> Download CV</a>
+            </div>
+          </div>
+
+          <div style="margin-top:14px">
+            <strong>Guarantees</strong>
+            <ul class="small muted" style="margin-top:8px;line-height:1.6">
+              <li>No upfront payment (Pay after review)</li>
+              <li>Free initial bug fix / diagnosis</li>
+              <li>Unlimited small revisions for delivered features</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer>© <span id="year"></span> Ravi Kumar Mishra — Freelance .NET Developer • Built for client conversions</footer>
+  </div>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle
+    const modeBtn = document.getElementById('mode');
+    const userPref = localStorage.getItem('site-theme');
+    if(userPref === 'light'){ document.documentElement.classList.add('light'); modeBtn.textContent='☀️' }
+    modeBtn.addEventListener('click', () => {
+      const isLight = document.documentElement.classList.toggle('light');
+      modeBtn.textContent = isLight ? '☀️' : '🌙';
+      localStorage.setItem('site-theme', isLight ? 'light' : 'dark');
+    });
+
+    // Testimonials slider (simple)
+    const slides = document.getElementById('slides');
+    const dotsWrap = document.getElementById('dots');
+    const total = slides.children.length;
+    let idx = 0;
+    // create dots
+    for(let i=0;i<total;i++){
+      const d = document.createElement('div'); d.className='dot'; d.dataset.i=i;
+      d.onclick = ()=>{ idx = i; updateSlider(); resetAuto(); };
+      dotsWrap.appendChild(d);
+    }
+    function updateSlider(){
+      slides.style.transform = 'translateX(' + (-idx * (slides.children[0].offsetWidth + 14)) + 'px)';
+      Array.from(dotsWrap.children).forEach((el, i)=> el.classList.toggle('active', i===idx));
+    }
+    function auto(){
+      idx = (idx+1) % total; updateSlider();
+    }
+    let autoT = setInterval(auto, 4500);
+    function resetAuto(){ clearInterval(autoT); autoT = setInterval(auto,4500); }
+    window.addEventListener('load', updateSlider);
+    window.addEventListener('resize', updateSlider);
+
+    // Contact quick action
+    function contactWith(subject){
+      document.getElementById('subject').value = subject;
+      document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+      document.getElementById('name').focus();
+    }
+
+    // Fake send form (since no backend included) — adapt to Formspree / EmailJS etc.
+    function sendForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name || !email || !subject || !message){ alert('Please complete the form'); return; }
+      // For real use: submit via fetch to your backend or use Formspree / EmailJS.
+      // Here: open WhatsApp quick message for immediate contact (client-friendly)
+      const wa = `Hi, I am ${encodeURIComponent(name)}. I want to discuss: ${encodeURIComponent(subject)}. Message: ${encodeURIComponent(message)}. Email: ${encodeURIComponent(email)}`;
+      const phone = '919999999999'; // CHANGE THIS
+      if(confirm('Send quick message on WhatsApp to start immediately? (Recommended)')){
+        window.open('https://wa.me/' + phone + '?text=' + wa, '_blank');
+      } else {
+        alert('Thanks! I will contact you soon (for demo purpose this is local-only). Replace sendForm with your backend call.');
+      }
+    }
+  </script>
+</body>
+</html>
