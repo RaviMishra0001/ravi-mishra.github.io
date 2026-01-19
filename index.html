@@ -450,12 +450,31 @@
     <section id="contact" class="py-16 px-4 sm:px-6">
         <div class="container mx-auto max-w-xl">
             <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text text-center mb-8">Let's Connect</h2>
-            <form action="https://formspree.io/f/your-id" method="POST" class="glass p-6 space-y-4">
+            <form id="contact"  class="glass p-6 space-y-4">
                 <input type="text" name="name" placeholder="Name" required class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon outline-none text-white text-sm">
                 <input type="email" name="_replyto" placeholder="Email" required class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon outline-none text-white text-sm">
                 <textarea name="message" placeholder="Message..." required rows="4" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 focus:border-neon outline-none text-white text-sm resize-none"></textarea>
                 <button type="submit" class="w-full btn-neon py-3 text-base font-bold">Send Message</button>
             </form>
+
+      <script>
+          document.getElementById("contact").addEventListener("submit", function (e) {
+              e.preventDefault();
+
+              const f = new FormData(this);
+
+              const msg =
+                  `New Contact Request From Github ,
+Name: ${f.get("name")},
+Email: ${f.get("_replyto")},
+Message: ${f.get("message")}`;
+
+              const url = "https://wa.me/918516979467?text=" + encodeURIComponent(msg);
+              window.open(url, "_blank");
+          });
+      </script>
+
+        
         </div>
     </section>
 
@@ -601,6 +620,7 @@
 
 </body>
 </html>
+
 
 
 
